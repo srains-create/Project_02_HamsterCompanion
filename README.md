@@ -1,4 +1,4 @@
-# Project-02-HamsterCompanion
+# Project_02_HamsterCompanion
 
 We will work with a team to create an android application.
 
