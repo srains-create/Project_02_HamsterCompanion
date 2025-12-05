@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Project_02_HamsterCompanion</string>
+    <string name="hamster_room">Hamster Room</string>
+    <string name="welcome_username">Welcome\nUsername!</string>
+    <string name="settings">Settings</string>
+    <string name="adoption_center">Adoption Center</string>
 </resources>
