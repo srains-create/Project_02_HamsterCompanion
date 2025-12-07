@@ -12,4 +12,6 @@
     <string name="test_data">Test Data</string>
     <string name="manage_users">Manage Users</string>
     <string name="welcome_admin">Welcome Admin!</string>
+    <string name="password_again">Password again</string>
+    <string name="please_sign_up">Please Sign Up</string>
 </resources>
