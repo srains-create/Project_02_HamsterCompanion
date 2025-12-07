@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D285b5"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/titleWelcome"
+        android:layout_width="278dp"
+        android:layout_height="150dp"
+        android:fontFamily="@font/adlam_display"
+        android:gravity="left"
+        android:text="@string/welcome_username"
+        android:textColor="#f1f4da"
+        android:textSize="45sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.11" />
+
+    <Button
+        android:id="@+id/hamsterRoomButton"
+        android:layout_width="278dp"
+        android:layout_height="105dp"
+        android:elevation="30dp"
+        android:fontFamily="@font/adlam_display"
+        android:stateListAnimator="@null"
+        android:gravity="center"
+        android:text="@string/hamster_room"
+        android:textColor="#D285b5"
+        android:textSize="32sp"
+        app:backgroundTint="#E9E7CC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleWelcome" />
+
+    <Button
+        android:id="@+id/adoptionCenter"
+        android:layout_width="278dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="36dp"
+
+        android:elevation="30dp"
+        android:fontFamily="@font/adlam_display"
+        android:stateListAnimator="@null"
+        android:gravity="center"
+        android:text="@string/adoption_center"
+        android:textColor="#D285b5"
+        android:textSize="32sp"
+        app:backgroundTint="#E9E7CC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hamsterRoomButton" />
+
+    <Button
+        android:id="@+id/settings"
+        android:layout_width="278dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="36dp"
+        android:elevation="30dp"
+        android:fontFamily="@font/adlam_display"
+        android:stateListAnimator="@null"
+        android:gravity="center"
+        android:text="@string/settings"
+        android:textColor="#D285b5"
+        android:textSize="32sp"
+        app:backgroundTint="#E9E7CC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adoptionCenter" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

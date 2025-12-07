@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#1EA7E4">
+    <TextView
+        android:id="@+id/titleWelcomeAdmin"
+        android:layout_width="278dp"
+        android:layout_height="150dp"
+        android:fontFamily="@font/adlam_display"
+        android:gravity="left"
+        android:text="@string/welcome_admin"
+        android:textColor="#f1f4da"
+        android:textSize="45sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.11" />
+
+    <Button
+        android:id="@+id/manageUsers"
+        android:layout_width="278dp"
+        android:layout_height="105dp"
+        android:elevation="30dp"
+        android:fontFamily="@font/adlam_display"
+        android:stateListAnimator="@null"
+        android:gravity="center"
+        android:text="@string/manage_users"
+        android:textColor="#D285b5"
+        android:textSize="32sp"
+        app:backgroundTint="#E9E7CC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleWelcomeAdmin" />
+
+    <Button
+        android:id="@+id/testDataButton"
+        android:layout_width="278dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="36dp"
+        android:elevation="30dp"
+        android:fontFamily="@font/adlam_display"
+        android:stateListAnimator="@null"
+        android:gravity="center"
+        android:text="@string/test_data"
+        android:textColor="#D285b5"
+        android:textSize="32sp"
+        app:backgroundTint="#E9E7CC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manageUsers" />
+
+    <Button
+        android:id="@+id/adminTings"
+        android:layout_width="278dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="36dp"
+        android:elevation="30dp"
+        android:fontFamily="@font/adlam_display"
+        android:stateListAnimator="@null"
+        android:gravity="center"
+        android:text="@string/admin_tingz"
+        android:textColor="#D285b5"
+        android:textSize="32sp"
+        app:backgroundTint="#E9E7CC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/testDataButton" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
