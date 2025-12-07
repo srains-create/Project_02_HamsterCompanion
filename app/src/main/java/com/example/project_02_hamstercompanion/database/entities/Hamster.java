@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.project_02_hamstercompanion.HamsterDatabase;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity(tableName = "hamsterTable")
+@Entity(tableName = HamsterDatabase.HAMSTER_TABLE)
 public class Hamster {
     @PrimaryKey(autoGenerate = true)
     private int hamsterId;
@@ -17,6 +19,7 @@ public class Hamster {
     private int hunger;
     private int cleanliness;
     private int energy;
+    //null adoptionDate = not adopted
     private LocalDateTime adoptionDate;
 
     public Hamster(int userId, String name, int hunger, int cleanliness, int energy) {
@@ -25,7 +28,7 @@ public class Hamster {
         this.hunger = hunger;
         this.cleanliness = cleanliness;
         this.energy = energy;
-        this.adoptionDate = LocalDateTime.now();
+        //null adoptionDate = not adopted
     }
 
     @NonNull
