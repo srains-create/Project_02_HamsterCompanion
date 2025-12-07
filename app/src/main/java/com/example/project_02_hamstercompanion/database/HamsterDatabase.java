@@ -1,0 +1,45 @@
+package com.example.project_02_hamstercompanion.database;
+
+import android.app.Application;
+
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
+
+import com.example.project_02_hamstercompanion.database.entities.User;
+import com.example.project_02_hamstercompanion.database.typeConverters.LocalDataTypeConverter;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+@Database( entities = {User.class}, version = 1, exportSchema = false)
+@TypeConverters({LocalDataTypeConverter.class})
+public abstract class HamsterDatabase extends RoomDatabase {
+
+    public static final String USER_TABLE = "user_table";
+
+    private static volatile HamsterDatabase INSTANCE;
+
+    private static final int NUMBER_OF_THREADS = 4;
+    static final ExecutorService databaseWriteExecutor =
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+
+    public abstract UserDAO userDAO();
+
+    public static HamsterDatabase getDatabase(final Application application) {
+        if (INSTANCE == null) {
+            synchronized (HamsterDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(
+                                    application.getApplicationContext(),
+                                    HamsterDatabase.class,
+                                    "hamster_database"
+                            )
+                            .build();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+}
