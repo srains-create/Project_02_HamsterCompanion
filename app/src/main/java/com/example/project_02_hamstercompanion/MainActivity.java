@@ -8,6 +8,8 @@ import com.example.project_02_hamstercompanion.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TAG = "DAC_HAMSTER";
+
     private ActivityMainBinding binding;
 
     @Override

@@ -4,7 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.project_02_hamstercompanion.HamsterDatabase;
+
+import com.example.project_02_hamstercompanion.database.HamsterDatabase;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
