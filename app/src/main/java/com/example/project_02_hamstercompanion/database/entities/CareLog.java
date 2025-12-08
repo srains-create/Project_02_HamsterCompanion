@@ -1,12 +1,14 @@
-package com.example.project_02_hamstercompanion.database;
+package com.example.project_02_hamstercompanion.database.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.project_02_hamstercompanion.database.HamsterDatabase;
+
 // Each row is one action done to a hamster: feed, clean, play, rest, etc.
-@Entity(tableName = "care_log")
+@Entity(tableName = HamsterDatabase.CARE_LOG_TABLE)
 public class CareLog {
 
     @PrimaryKey(autoGenerate = true)

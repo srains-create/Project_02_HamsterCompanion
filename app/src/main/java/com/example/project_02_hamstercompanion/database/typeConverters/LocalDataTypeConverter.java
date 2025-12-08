@@ -9,13 +9,19 @@ import java.time.ZonedDateTime;
 
 public class LocalDataTypeConverter {
     @TypeConverter
-    public long convertDateToLong(LocalDateTime date){
+    public Long convertDateToLong(LocalDateTime dateTime){
+        if (dateTime == null) {
+            return null;
+        }
         ZoneId ZoneID;
-        ZonedDateTime zdt = ZonedDateTime.of(date, ZoneId.systemDefault());
+        ZonedDateTime zdt = ZonedDateTime.of(dateTime, ZoneId.systemDefault());
         return zdt.toInstant().toEpochMilli();
     }
     @TypeConverter
     public LocalDateTime convertLongToDate(Long epochMilli){
+        if (epochMilli == null) {
+            return null;
+        }
         Instant instant = Instant.ofEpochMilli(epochMilli);
         return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 

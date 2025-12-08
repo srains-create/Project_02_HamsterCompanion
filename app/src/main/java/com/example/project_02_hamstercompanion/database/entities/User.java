@@ -3,7 +3,7 @@ package com.example.project_02_hamstercompanion.database.entities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.project_02_hamstercompanion.HamsterDatabase;
+import com.example.project_02_hamstercompanion.database.HamsterDatabase;
 
 import java.util.Objects;
 
