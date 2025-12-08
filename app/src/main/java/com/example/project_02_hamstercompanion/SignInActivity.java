@@ -32,6 +32,13 @@ public class SignInActivity extends AppCompatActivity {
                 verifyUser();
             }
         });
+
+        binding.signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(SignUpActivity.signUpIntentFactory(getApplicationContext()));
+            }
+        });
     }
 
     private void verifyUser(){
@@ -41,7 +48,19 @@ public class SignInActivity extends AppCompatActivity {
             ToastMaker("Username shouldn't be blank.");
         }
         LiveData<User> userObserver = repository.getUserByUserName(username);
-
+        userObserver.observe(this, user -> {
+            if (user != null) {
+                String password = binding.passwordSignInEditText.getText().toString();
+                if (password.equals(user.getUserPassword()))
+                    //startActivity();    // TODO: Assign target Activity to verifyUser
+                    ToastMaker("It's working!");
+                else {
+                    ToastMaker("Password Invalid");
+                }
+            } else {
+                ToastMaker(String.format("%s isn't a valid username", username));
+            }
+        });
     }
 
     static Intent signInIntentFactory(Context context){
