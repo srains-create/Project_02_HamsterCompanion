@@ -14,4 +14,8 @@
     <string name="welcome_admin">Welcome Admin!</string>
     <string name="password_again">Password again</string>
     <string name="please_sign_up">Please Sign Up</string>
+    <string name="care_log">Care Log</string>
+    <string name="action">Action</string>
+    <string name="feed">Feed</string>
+    <string name="date_and_time">Date and Time</string>
 </resources>
