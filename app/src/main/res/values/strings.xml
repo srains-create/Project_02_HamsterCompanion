@@ -14,4 +14,12 @@
     <string name="welcome_admin">Welcome Admin!</string>
     <string name="password_again">Password again</string>
     <string name="please_sign_up">Please Sign Up</string>
+    <string name="hamster_name">Hamster Name</string>
+    <string name="hunger">Hunger:</string>
+    <string name="cleanliness">Cleanliness:</string>
+    <string name="energy">Energy:</string>
+    <string name="feed">Feed</string>
+    <string name="clean">Clean</string>
+    <string name="play">Play</string>
+    <string name="rest">Rest</string>
 </resources>
