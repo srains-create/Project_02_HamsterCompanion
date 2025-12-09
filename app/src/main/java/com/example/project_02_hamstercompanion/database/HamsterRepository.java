@@ -22,7 +22,6 @@ public class HamsterRepository {
 
     private HamsterRepository(Application application) {
         HamsterDatabase db = HamsterDatabase.getDatabase(application);
-        this.userDAO = db.userDAO();
         this.userDAO = db.userDao();
         this.careLogDao = db.careLogDao(); //Jael added
     }
@@ -30,7 +29,6 @@ public class HamsterRepository {
         if(repository!= null){
             return repository;
 
-    }
         }
 
         Future<HamsterRepository> future =
@@ -62,7 +60,6 @@ public class HamsterRepository {
 
     public void deleteUser(User user){
         HamsterDatabase.databaseWriteExecutor.execute(() -> {
-                userDAO.delete(user);
             userDAO.delete(user);
         });
     }
@@ -70,7 +67,6 @@ public class HamsterRepository {
     public void deleteAllUsers(){
         HamsterDatabase.databaseWriteExecutor.execute(()-> {
             userDAO.deleteAll();
-                });
         });
     }
 
@@ -87,9 +83,6 @@ public class HamsterRepository {
         return userDAO.getUserByUserId(userId);
     }
 
-
-
-}
     public LiveData<List<CareLog>> getLogsForHamster(int hamsterId) {
         return careLogDao.getLogsForHamsterLiveData(hamsterId);
     }
