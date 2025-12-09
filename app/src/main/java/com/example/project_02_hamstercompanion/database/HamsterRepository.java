@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.project_02_hamstercompanion.MainActivity;
 import com.example.project_02_hamstercompanion.database.entities.User;
+import com.example.project_02_hamstercompanion.database.entities.CareLog;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -15,12 +16,14 @@ import java.util.concurrent.Future;
 
 public class HamsterRepository {
     private final UserDAO userDAO;
+    private final CareLogDao careLogDao; //Jael added
 
     private static HamsterRepository repository;
 
     private HamsterRepository(Application application) {
         HamsterDatabase db = HamsterDatabase.getDatabase(application);
         this.userDAO = db.userDao();
+        this.careLogDao = db.careLogDao(); //Jael added
     }
     public static HamsterRepository getRepository(Application application) {
         if(repository!= null){
@@ -75,10 +78,17 @@ public class HamsterRepository {
         return userDAO.getUserByUsername(username);
     }
 
+    //The following below were added for UI to call repository.getLogsForHamster(hamsterId) - Jael
     public LiveData<User> getUserByUserId(int userId) {
         return userDAO.getUserByUserId(userId);
     }
 
-
-
+    public LiveData<List<CareLog>> getLogsForHamster(int hamsterId) {
+        return careLogDao.getLogsForHamsterLiveData(hamsterId);
+    }
+    public void insertCareLog(CareLog careLog) {
+        HamsterDatabase.databaseWriteExecutor.execute(() -> {
+            careLogDao.insert(careLog);
+        });
+    }
 }

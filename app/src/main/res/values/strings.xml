@@ -23,4 +23,8 @@
     <string name="play">Play</string>
     <string name="rest">Rest</string>
     <string name="_0">0</string>
+    <string name="care_log">Care Log</string>
+    <string name="action">Action</string>
+    <string name="feed">Feed</string>
+    <string name="date_and_time">Date and Time</string>
 </resources>
