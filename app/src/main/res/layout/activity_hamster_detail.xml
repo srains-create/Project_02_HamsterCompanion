@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="24dp">
+
+<!-- Hamster Name -->
+<TextView
+    android:id="@+id/textHamsterName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/hamster_name"
+    android:textSize="24sp"
+    android:textStyle="bold"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+<!-- Hunger Label -->
+<TextView
+    android:id="@+id/textHungerLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/hunger"
+    app:layout_constraintTop_toBottomOf="@id/textHamsterName"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginTop="24dp" />
+
+<!-- Hunger Value -->
+<TextView
+    android:id="@+id/textHungerValue"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/_0"
+    app:layout_constraintTop_toTopOf="@id/textHungerLabel"
+    app:layout_constraintStart_toEndOf="@id/textHungerLabel"
+    android:layout_marginStart="8dp" />
+
+<!-- Cleanliness Label -->
+<TextView
+    android:id="@+id/textCleanlinessLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cleanliness"
+    app:layout_constraintTop_toBottomOf="@id/textHungerLabel"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginTop="12dp" />
+
+<!-- Cleanliness Value -->
+<TextView
+    android:id="@+id/textCleanlinessValue"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/_0"
+    app:layout_constraintTop_toTopOf="@id/textCleanlinessLabel"
+    app:layout_constraintStart_toEndOf="@id/textCleanlinessLabel"
+    android:layout_marginStart="8dp" />
+
+<!-- Energy Label -->
+<TextView
+    android:id="@+id/textEnergyLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/energy"
+    app:layout_constraintTop_toBottomOf="@id/textCleanlinessLabel"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginTop="12dp" />
+
+<!-- Energy Value -->
+<TextView
+    android:id="@+id/textEnergyValue"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/_0"
+    app:layout_constraintTop_toTopOf="@id/textEnergyLabel"
+    app:layout_constraintStart_toEndOf="@id/textEnergyLabel"
+    android:layout_marginStart="8dp" />
+
+<!-- FEED BUTTON -->
+<Button
+    android:id="@+id/buttonFeed"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="@string/feed"
+    app:layout_constraintTop_toBottomOf="@id/textEnergyLabel"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="24dp" />
+
+<!-- CLEAN BUTTON -->
+<Button
+    android:id="@+id/buttonClean"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="@string/clean"
+    app:layout_constraintTop_toBottomOf="@id/buttonFeed"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="12dp" />
+
+<!-- PLAY BUTTON -->
+<Button
+    android:id="@+id/buttonPlay"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="@string/play"
+    app:layout_constraintTop_toBottomOf="@id/buttonClean"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="12dp" />
+
+<!-- REST BUTTON -->
+<Button
+    android:id="@+id/buttonRest"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="@string/rest"
+    app:layout_constraintTop_toBottomOf="@id/buttonPlay"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="12dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
