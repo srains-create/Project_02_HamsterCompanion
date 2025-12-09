@@ -22,4 +22,5 @@
     <string name="clean">Clean</string>
     <string name="play">Play</string>
     <string name="rest">Rest</string>
+    <string name="_0">0</string>
 </resources>

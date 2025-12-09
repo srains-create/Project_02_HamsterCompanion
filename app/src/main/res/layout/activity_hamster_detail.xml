@@ -32,7 +32,7 @@
     android:id="@+id/textHungerValue"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="0"
+    android:text="@string/_0"
     app:layout_constraintTop_toTopOf="@id/textHungerLabel"
     app:layout_constraintStart_toEndOf="@id/textHungerLabel"
     android:layout_marginStart="8dp" />
@@ -52,7 +52,7 @@
     android:id="@+id/textCleanlinessValue"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="0"
+    android:text="@string/_0"
     app:layout_constraintTop_toTopOf="@id/textCleanlinessLabel"
     app:layout_constraintStart_toEndOf="@id/textCleanlinessLabel"
     android:layout_marginStart="8dp" />
@@ -72,7 +72,7 @@
     android:id="@+id/textEnergyValue"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="0"
+    android:text="@string/_0"
     app:layout_constraintTop_toTopOf="@id/textEnergyLabel"
     app:layout_constraintStart_toEndOf="@id/textEnergyLabel"
     android:layout_marginStart="8dp" />
