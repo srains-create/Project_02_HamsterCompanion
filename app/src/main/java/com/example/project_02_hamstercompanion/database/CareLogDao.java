@@ -1,5 +1,6 @@
 package com.example.project_02_hamstercompanion.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -17,6 +18,10 @@ public interface CareLogDao {
     // Get all care log entries for one hamster, newest first.
     @Query("SELECT * FROM " + HamsterDatabase.CARE_LOG_TABLE + " WHERE hamster_id = :hamsterId ORDER BY timestamp DESC")
     List<CareLog> getLogsForHamster(int hamsterId);
+
+    //added aextra method to return LiveData for UI -Jael
+    @Query("SELECT * FROM " + HamsterDatabase.CARE_LOG_TABLE + " WHERE hamster_id = :hamsterId ORDER BY timestamp DESC")
+    LiveData<List<CareLog>> getLogsForHamsterLiveData (int hamsterId);
 
     @Query("SELECT * FROM " + HamsterDatabase.CARE_LOG_TABLE)
     List<CareLog> getAllLogs();
