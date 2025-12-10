@@ -1,7 +1,8 @@
 package com.example.project_02_hamstercompanion.database;
+
 import android.content.Context;
 
-import androidx.lifecycle.LiveData;
+
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
@@ -14,6 +15,7 @@ import com.example.project_02_hamstercompanion.database.entities.Hamster;
 import com.example.project_02_hamstercompanion.database.entities.User;
 import com.example.project_02_hamstercompanion.database.entities.CareLog;
 import com.example.project_02_hamstercompanion.database.typeConverters.LocalDataTypeConverter;
+
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
