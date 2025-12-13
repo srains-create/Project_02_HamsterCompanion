@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="30dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/hamsterNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/adlam_display"
+            android:padding="2dp"
+            android:text="Hamster1"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintEnd_toStartOf=""
+            app:layout_constraintHorizontal_bias="0.014"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/careButton"
+            android:layout_width="106dp"
+            android:layout_height="35dp"
+            android:fontFamily="@font/adlam_display"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="Care"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/hamsterHungerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/adlam_display"
+            android:padding="2dp"
+            android:text="🥕 10"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hamsterNameTextView" />
+        <TextView
+            android:id="@+id/hamsterCleanlinessTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/adlam_display"
+            android:padding="2dp"
+            android:text="🧼 20"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/hamsterHungerTextView"
+            app:layout_constraintTop_toBottomOf="@id/hamsterNameTextView" />
+        <TextView
+            android:id="@+id/hamsterEnergyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/adlam_display"
+            android:padding="2dp"
+            android:text="⚡20"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/hamsterCleanlinessTextView"
+            app:layout_constraintTop_toBottomOf="@id/hamsterNameTextView" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

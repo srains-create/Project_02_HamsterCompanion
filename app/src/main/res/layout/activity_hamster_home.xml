@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#9b90d8">
+
+    <TextView
+        android:id="@+id/hamsterHomeTitle"
+        android:layout_width="339dp"
+        android:layout_height="109dp"
+        android:fontFamily="@font/adlam_display"
+        android:gravity="left"
+        android:text="@string/hamster_home"
+        android:textColor="#f1f4da"
+        android:textSize="45sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.078" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="338dp"
+        android:layout_height="511dp"
+        android:fontFamily="@font/adlam_display"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hamsterHomeTitle"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_hamster"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
