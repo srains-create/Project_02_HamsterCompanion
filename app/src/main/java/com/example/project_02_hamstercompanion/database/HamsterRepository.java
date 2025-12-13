@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.example.project_02_hamstercompanion.MainActivity;
+import com.example.project_02_hamstercompanion.database.entities.Hamster;
 import com.example.project_02_hamstercompanion.database.entities.User;
 import com.example.project_02_hamstercompanion.database.entities.CareLog;
 
@@ -17,6 +18,7 @@ import java.util.concurrent.Future;
 public class HamsterRepository {
     private final UserDAO userDAO;
     private final CareLogDao careLogDao; //Jael added
+    private final HamsterDAO hamsterDAO;
 
     private static HamsterRepository repository;
 
@@ -24,6 +26,7 @@ public class HamsterRepository {
         HamsterDatabase db = HamsterDatabase.getDatabase(application);
         this.userDAO = db.userDao();
         this.careLogDao = db.careLogDao(); //Jael added
+        this.hamsterDAO = db.hamsterDao();
     }
     public static HamsterRepository getRepository(Application application) {
         if(repository!= null){
@@ -90,5 +93,13 @@ public class HamsterRepository {
         HamsterDatabase.databaseWriteExecutor.execute(() -> {
             careLogDao.insert(careLog);
         });
+    }
+
+    public LiveData<List<Hamster>> getHamstersOfUser(int userId) {
+        return hamsterDAO.getHamsterOfUserIdLiveData(userId);
+    }
+
+    public LiveData<List<Hamster>> getHamstersForAdoption(){
+        return hamsterDAO.getHamstersForAdoptionLiveData();
     }
 }

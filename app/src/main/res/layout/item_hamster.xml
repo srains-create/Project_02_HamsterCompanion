@@ -42,40 +42,83 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/hamsterHungerTextView"
+            android:id="@+id/hamsterHungerIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/adlam_display"
             android:padding="2dp"
-            android:text="🥕 10"
+            android:text="@string/hunger_icon"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/hamsterNameTextView" />
+
+        <TextView
+            android:id="@+id/hamsterHungerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/adlam_display"
+            android:padding="2dp"
+            android:text="10"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/hamsterHungerIcon"
+            app:layout_constraintTop_toBottomOf="@id/hamsterNameTextView" />
+
+        <TextView
+            android:id="@+id/hamsterCleanlinessIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/adlam_display"
+            android:padding="2dp"
+            android:text="@string/cleanliness_icon"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/hamsterHungerTextView"
+            app:layout_constraintTop_toBottomOf="@id/hamsterNameTextView" />
+
         <TextView
             android:id="@+id/hamsterCleanlinessTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/adlam_display"
             android:padding="2dp"
-            android:text="🧼 20"
+            android:text="23"
             android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@id/hamsterHungerTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/hamsterCleanlinessIcon"
             app:layout_constraintTop_toBottomOf="@id/hamsterNameTextView" />
+
         <TextView
-            android:id="@+id/hamsterEnergyTextView"
+            android:id="@+id/hamsterEnergyIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/adlam_display"
-            android:padding="2dp"
-            android:text="⚡20"
+            android:text="@string/energy_icon"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/hamsterCleanlinessTextView"
+            app:layout_constraintTop_toBottomOf="@id/hamsterNameTextView" />
+
+        <TextView
+            android:id="@+id/hamsterEnergyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/adlam_display"
+            android:padding="2dp"
+            android:text="23"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/hamsterEnergyIcon"
             app:layout_constraintTop_toBottomOf="@id/hamsterNameTextView" />
 
 
