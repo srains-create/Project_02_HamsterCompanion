@@ -7,7 +7,6 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-
 import com.example.project_02_hamstercompanion.database.entities.User;
 
 import java.util.List;
@@ -15,15 +14,19 @@ import java.util.List;
 @Dao
 public interface UserDAO {
 
-@Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User... user);
+
     @Delete
     void delete(User user);
-    @Query("DELETE FROM " +HamsterDatabase.USER_TABLE)
+
+    @Query("DELETE FROM " + HamsterDatabase.USER_TABLE)
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User... users);
+
     @Delete
     void delete(User user);
+
     @Query("DELETE FROM " + HamsterDatabase.USER_TABLE)
     void deleteAll();
 
@@ -34,13 +37,6 @@ public interface UserDAO {
     LiveData<User> getUserByUsername(String username);
 
     @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " WHErE userId == :userId")
-    LiveData<User>getUserByUserId(int userId);
-
-}
-    @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " WHERE userName = :username")
-    LiveData<User> getUserByUsername(String username);
-
-    @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " WHERE userId = :userId")
-    LiveData<User>getUserByUserId(int userId);
+    LiveData<User> getUserByUserId(int userId);
 
 }

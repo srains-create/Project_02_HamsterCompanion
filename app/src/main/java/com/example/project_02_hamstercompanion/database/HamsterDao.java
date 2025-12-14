@@ -29,4 +29,11 @@ public interface HamsterDAO {
     List<Hamster> getHamstersForAdoption();
     @Query("SELECT * FROM " + HamsterDatabase.HAMSTER_TABLE + " WHERE adoptionDate IS NULL ORDER BY hamsterId DESC")
     LiveData<List<Hamster>> getHamstersForAdoptionLiveData();//took out int loggedInUserId param
+
+    @Query("SELECT * FROM " + HamsterDatabase.HAMSTER_TABLE + " WHERE hamsterId = :hamsterId LIMIT 1")
+    LiveData<Hamster> getHamsterById(int hamsterId);
+
+    @androidx.room.Update
+    void update(Hamster hamster);
+
 }
