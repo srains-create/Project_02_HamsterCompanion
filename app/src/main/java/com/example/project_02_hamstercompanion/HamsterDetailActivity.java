@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -139,6 +140,8 @@ public class HamsterDetailActivity extends AppCompatActivity {
         // increase energy by 5, maximum 100.
         if (currentHamster == null) return;
 
+        Toast.makeText(this, "Feed clicked", Toast.LENGTH_SHORT).show();
+
         int hunger = currentHamster.getHunger();
         hunger = hunger - 10;
         if (hunger < 0) hunger = 0;
@@ -163,6 +166,8 @@ public class HamsterDetailActivity extends AppCompatActivity {
     private void handleClean() {
         if (currentHamster == null) return;
 
+        Toast.makeText(this, "Clean clicked", Toast.LENGTH_SHORT).show();
+
         int cleanliness = currentHamster.getCleanliness();
         cleanliness = cleanliness + 10;
         if (cleanliness > 100) cleanliness = 100;
@@ -183,6 +188,8 @@ public class HamsterDetailActivity extends AppCompatActivity {
 
     private void handlePlay() {
         if (currentHamster == null) return;
+
+        Toast.makeText(this, "Play clicked", Toast.LENGTH_SHORT).show();
 
         int hunger = currentHamster.getHunger();
         hunger = hunger + 5;
@@ -208,9 +215,9 @@ public class HamsterDetailActivity extends AppCompatActivity {
     }
 
     private void handleRest() {
-        // TODO:
-        // Similar steps, actionType = "rest", adjust stats as you decide.
         if (currentHamster == null) return;
+
+        Toast.makeText(this, "Rest clicked", Toast.LENGTH_SHORT).show();
 
         int energy = currentHamster.getEnergy();
         energy = energy + 10;

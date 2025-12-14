@@ -21,13 +21,6 @@ public interface UserDAO {
     void delete(User user);
 
     @Query("DELETE FROM " + HamsterDatabase.USER_TABLE)
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(User... users);
-
-    @Delete
-    void delete(User user);
-
-    @Query("DELETE FROM " + HamsterDatabase.USER_TABLE)
     void deleteAll();
 
     @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " ORDER BY userName")
