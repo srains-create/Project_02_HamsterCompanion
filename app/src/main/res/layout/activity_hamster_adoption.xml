@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9b90d8">
+    android:background="#7ea782">
 
     <TextView
-        android:id="@+id/hamsterHomeTitle"
-        android:layout_width="327dp"
-        android:layout_height="91dp"
+        android:id="@+id/hamsterAdoptionTitle"
+        android:layout_width="332dp"
+        android:layout_height="120dp"
         android:fontFamily="@font/adlam_display"
-        android:gravity="left"
-        android:text="@string/hamster_home"
+        android:gravity="center"
+        android:text="@string/adoption_center_title"
         android:textColor="#f1f4da"
         android:textSize="45sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/hamsterRecycler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hamsterRecycler"
@@ -29,8 +29,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hamsterHomeTitle"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.763"
         tools:listitem="@layout/item_hamster" />
 
 

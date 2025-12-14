@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.ListAdapter;
 import com.example.project_02_hamstercompanion.database.entities.Hamster;
 
 public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
+    public static final int HAMSTER_HOME = 1;
+    public static final int ADOPTION_CENTER = 2;
+
 
     public HamsterAdapter(@NonNull DiffUtil.ItemCallback<Hamster> diffCallback){
         super(diffCallback);
@@ -16,7 +19,16 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
     @NonNull
     @Override
     public HamsterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return HamsterViewHolder.create(parent);
+        HamsterViewHolder holder = HamsterViewHolder.create(parent);
+        switch(viewType) {
+            case HAMSTER_HOME:
+                 holder.setButtonAppearance("Care");
+                 break;
+            case ADOPTION_CENTER:
+                holder.setButtonAppearance("Adopt");
+                break;
+        }
+        return holder;
     }
 
     @Override
