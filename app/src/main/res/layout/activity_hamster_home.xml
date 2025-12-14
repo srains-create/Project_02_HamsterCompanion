@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/hamsterHomeTitle"
-        android:layout_width="327dp"
-        android:layout_height="91dp"
+        android:layout_width="326dp"
+        android:layout_height="74dp"
         android:fontFamily="@font/adlam_display"
         android:gravity="left"
         android:text="@string/hamster_home"
@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintVertical_bias="0.053" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hamsterRecycler"
@@ -32,6 +32,20 @@
         app:layout_constraintTop_toBottomOf="@+id/hamsterHomeTitle"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_hamster" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/adlam_display"
+        android:text="Care log"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hamsterRecycler"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
