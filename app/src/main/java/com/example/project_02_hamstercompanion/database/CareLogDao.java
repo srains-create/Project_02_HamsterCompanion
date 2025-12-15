@@ -13,13 +13,13 @@ import java.util.List;
 public interface CareLogDao {
 
     @Insert
-    long insert(CareLog careLog);
+    void insert(CareLog careLog);
 
     // Get all care log entries for one hamster, newest first.
     @Query("SELECT * FROM " + HamsterDatabase.CARE_LOG_TABLE + " WHERE hamster_id = :hamsterId ORDER BY timestamp DESC")
     List<CareLog> getLogsForHamster(int hamsterId);
 
-    //added extra method to return LiveData for UI -Jael
+    //added a extra method to return LiveData for UI -Jael
     @Query("SELECT * FROM " + HamsterDatabase.CARE_LOG_TABLE + " WHERE hamster_id = :hamsterId ORDER BY timestamp DESC")
     LiveData<List<CareLog>> getLogsForHamsterLiveData (int hamsterId);
 
