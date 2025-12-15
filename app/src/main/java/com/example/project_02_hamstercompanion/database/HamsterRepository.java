@@ -90,6 +90,9 @@ public class HamsterRepository {
             careLogDao.insert(careLog);
         });
     }
+    public LiveData<List<CareLog>> getLogsForHamster(int hamsterId) {
+        return careLogDao.getLogsForHamsterLiveData(hamsterId);
+    }
 
     public void insertUser(User... users) {
         HamsterDatabase.databaseWriteExecutor.execute(() -> {
@@ -99,6 +102,9 @@ public class HamsterRepository {
 
     public LiveData<User> getUserByUserId(int userId) {
         return userDAO.getUserByUserId(userId);
+    }
+    public LiveData<User> getUserByUserName(String username) {
+        return userDAO.getUserByUsername(username);
     }
 
     //Added by Khanh Ho 12/14/25
