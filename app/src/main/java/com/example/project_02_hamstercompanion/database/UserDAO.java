@@ -29,7 +29,7 @@ public interface UserDAO {
     @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " WHERE username == :username")
     LiveData<User> getUserByUsername(String username);
 
-    @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " WHErE userId == :userId")
+    @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " WHERE userId == :userId")
     LiveData<User> getUserByUserId(int userId);
 
 }
