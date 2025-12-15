@@ -9,14 +9,22 @@ import com.example.project_02_hamstercompanion.database.entities.Hamster;
 
 public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
 
-    public HamsterAdapter(@NonNull DiffUtil.ItemCallback<Hamster> diffCallback){
+    private final int buttonType;
+    public static final int HAMSTER_HOME = 1;
+    public static final int ADOPTION_CENTER = 2;
+
+
+    public HamsterAdapter(@NonNull DiffUtil.ItemCallback<Hamster> diffCallback, int buttonType){
         super(diffCallback);
+        this.buttonType = buttonType;
     }
 
     @NonNull
     @Override
     public HamsterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return HamsterViewHolder.create(parent);
+        HamsterViewHolder holder = HamsterViewHolder.create(parent);
+        holder.setButtonType(buttonType);
+        return holder;
     }
 
     @Override

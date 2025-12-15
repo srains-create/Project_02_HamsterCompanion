@@ -32,4 +32,5 @@
     <string name="hunger_icon">🥕</string>
     <string name="cleanliness_icon">🧼</string>
     <string name="energy_icon">⚡</string>
+    <string name="adoption_center_title">Adoption Center</string>
 </resources>
