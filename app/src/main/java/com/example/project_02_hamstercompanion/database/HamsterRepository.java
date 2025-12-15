@@ -1,7 +1,9 @@
 package com.example.project_02_hamstercompanion.database;
 
+import java.util.List;
 import android.app.Application;
 import android.util.Log;
+
 
 import androidx.lifecycle.LiveData;
 
@@ -97,6 +99,15 @@ public class HamsterRepository {
 
     public LiveData<User> getUserByUserId(int userId) {
         return userDAO.getUserByUserId(userId);
+    }
+
+    //Added by Khanh Ho 12/14/25
+    public LiveData<List<Hamster>> getHamstersOfUser(int userId) {
+        return hamsterDAO.getHamsterOfUserIdLiveData(userId);
+    }
+
+    public LiveData<List<Hamster>> getHamstersForAdoption() {
+        return hamsterDAO.getHamstersForAdoptionLiveData();
     }
 
 //    Future<HamsterRepository> future =
