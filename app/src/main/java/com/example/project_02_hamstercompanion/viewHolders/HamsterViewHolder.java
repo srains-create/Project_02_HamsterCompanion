@@ -1,6 +1,5 @@
 package com.example.project_02_hamstercompanion.viewHolders;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,8 @@ import com.example.project_02_hamstercompanion.database.entities.Hamster;
 public class HamsterViewHolder extends RecyclerView.ViewHolder {
     private final TextView hamsterName, hamsterHunger, hamsterEnergy, hamsterCleanliness;
     private final Button hamsterButton;
+    private static final int HAMSTER_HOME = 1;
+    private static final int ADOPTION_CENTER = 2;
 
     private HamsterViewHolder(View hamsterView) {
         super(hamsterView);
@@ -26,8 +27,16 @@ public class HamsterViewHolder extends RecyclerView.ViewHolder {
         hamsterButton = hamsterView.findViewById(R.id.hamsterActionButton);
     }
 
-    public void setButtonAppearance(String text) {
-        hamsterButton.setText(text);
+    public void setButtonType(int buttonType) {
+        //change color too? (not implemented yet)
+        switch (buttonType) {
+            case HAMSTER_HOME:
+                hamsterButton.setText(HAMSTER_HOME);
+                break;
+            case ADOPTION_CENTER:
+                hamsterButton.setText(ADOPTION_CENTER);
+                break;
+        }
     }
 
     public void bind(Hamster hamster) {
