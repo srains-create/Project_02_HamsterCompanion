@@ -3,16 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#7DD395"
     android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/careLogTitleTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="332dp"
+        android:layout_height="120dp"
         android:fontFamily="@font/adlam_display"
-        android:padding="16dp"
+        android:gravity="center"
         android:text="@string/hamster_ncare_log"
         android:textColor="#f1f4da"
         android:textSize="45sp"
@@ -22,9 +23,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/careLogRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="8dp" />
+        android:layout_height="511dp"
+        android:paddingTop="8dp"
+        tools:listitem="@layout/item_care_log"/>
 
 
 </LinearLayout>

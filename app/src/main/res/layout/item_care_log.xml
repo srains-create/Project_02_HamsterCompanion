@@ -11,31 +11,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+
         android:padding="12dp">
 
-    <TextView
-        android:id="@+id/actionTypeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        />
+        <TextView
+            android:id="@+id/actionTypeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/adlam_display"
+            android:text="@string/action"
+            android:textColor="#3F51B5"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     <TextView
         android:id="@+id/timestampTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/date_and_time"
+        android:text="Date : "
+        android:textColor="#D285b5"
         android:textSize="14sp"
+        android:fontFamily="@font/adlam_display"
         android:paddingTop="2dp"/>
-    <TextView
-        android:id="@+id/notesTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notes"
-        android:textSize="14sp"
-        android:visibility="gone"
-        android:paddingTop="2dp"/>
+
+        <TextView
+            android:id="@+id/timestampTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:text="Time : "
+            android:fontFamily="@font/adlam_display"
+            android:textColor="#D285b5"
+            android:textSize="14sp" />
+
+
     </LinearLayout>
 
 
