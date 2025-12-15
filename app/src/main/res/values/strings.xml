@@ -33,4 +33,5 @@
     <string name="cleanliness_icon">🧼</string>
     <string name="energy_icon">⚡</string>
     <string name="adoption_center_title">Adoption Center</string>
+    <string name="hamster_ncare_log">Hamster \nCare Log</string>
 </resources>
