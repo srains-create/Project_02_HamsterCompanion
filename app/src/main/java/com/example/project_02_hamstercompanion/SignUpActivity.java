@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.project_02_hamstercompanion.database.UserDAO;
+
 import com.example.project_02_hamstercompanion.database.entities.User;
 import com.example.project_02_hamstercompanion.databinding.ActivitySignupBinding;
 
