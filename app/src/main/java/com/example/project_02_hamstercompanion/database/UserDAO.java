@@ -26,10 +26,13 @@ public interface UserDAO {
     @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " ORDER BY userName")
     LiveData<List<User>> getAllUsers();
 
-    @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " WHERE username == :username")
+    @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " WHERE userName == :username")
     LiveData<User> getUserByUsername(String username);
 
     @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " WHERE userId == :userId")
     LiveData<User> getUserByUserId(int userId);
+
+    @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " WHERE userName = :username AND userPassword = :password LIMIT 1")//password or userPassword? -Jael
+    User getUserByCredentials(String username, String password);
 
 }
