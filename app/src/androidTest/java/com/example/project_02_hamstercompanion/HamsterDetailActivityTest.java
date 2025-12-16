@@ -17,32 +17,29 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(AndroidJUnit4.class)
 public class HamsterDetailActivityTest {
 
+    private Context context;
+
     @Before
-    public void setUp() throws Exception { }
+    public void setUp() {
+        context = ApplicationProvider.getApplicationContext();
+    }
 
     @After
-    public void tearDown() throws Exception { }
+    public void tearDown() {
+        context = null;
+    }
 
-    // test 1
     @Test
     public void intentFactory_putsCorrectHamsterId() {
-        Context context = ApplicationProvider.getApplicationContext();
         int expectedId = 42;
-
         Intent intent = HamsterDetailActivity.intentFactory(context, expectedId);
-
-        int actualId =
-                intent.getIntExtra(HamsterDetailActivity.EXTRA_HAMSTER_ID, -1);
-
+        int actualId = intent.getIntExtra(HamsterDetailActivity.EXTRA_HAMSTER_ID, -1);
         assertEquals(expectedId, actualId);
     }
 
-    // test 2
     @Test
-    public void intentFactory_setsCorrectTargetActivity() {
-        Context context = ApplicationProvider.getApplicationContext();
+    public void intentFactory_usesHamsterDetailActivityComponent() {
         int hamsterId = 7;
-
         Intent intent = HamsterDetailActivity.intentFactory(context, hamsterId);
 
         assertNotNull(intent.getComponent());

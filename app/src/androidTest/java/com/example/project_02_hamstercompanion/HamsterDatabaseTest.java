@@ -89,7 +89,6 @@ public class HamsterDatabaseTest {
         );
         careLogDao.insert(log);
 
-        // query logs for this hamster
         List<CareLog> logs = careLogDao.getLogsForHamster(hamsterId);
 
         assertEquals(1, logs.size());
