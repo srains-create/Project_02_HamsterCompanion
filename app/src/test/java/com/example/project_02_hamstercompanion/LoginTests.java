@@ -14,7 +14,7 @@ import org.junit.Test;
 public class LoginTests {
 
     private TestHamsterRepository repository;
-    private SignInActivity signInActivity;  // or ViewModel/whatever holds verifyUser logic
+    //private SignInActivity signInActivity;  // or ViewModel/whatever holds verifyUser logic
 
     @Before
     public void setUp() {
@@ -29,7 +29,7 @@ public class LoginTests {
     @After
     public void tearDown() {
         repository = null;
-        signInActivity = null;
+        //signInActivity = null;
     }
 
     @Test
@@ -41,7 +41,7 @@ public class LoginTests {
 
         // Act
         SignInActivity.LoginCheckResult result =
-                signInActivity.checkLoginResult(user, "password123");
+                SignInActivity.checkLoginResult(user, "password123");
 
         // Assert
         assertEquals(SignInActivity.LoginCheckResult.SUCCESS, result);
@@ -56,7 +56,7 @@ public class LoginTests {
 
         // Act
         SignInActivity.LoginCheckResult result =
-                signInActivity.checkLoginResult(user, "wrong");
+                SignInActivity.checkLoginResult(user, "wrong");
 
         // Assert
         assertEquals(SignInActivity.LoginCheckResult.WRONG_PASSWORD, result);
@@ -69,10 +69,19 @@ public class LoginTests {
 
         // Act
         SignInActivity.LoginCheckResult result =
-                signInActivity.checkLoginResult(user, "irrelevant");
+                SignInActivity.checkLoginResult(user, "irrelevant");
 
         // Assert
         assertEquals(SignInActivity.LoginCheckResult.USER_NOT_FOUND, result);
+    }
+
+    //Jael implemented the following admin unit tests below vvvvv on 12/16/25
+    @Test
+    public void adminUser_correctPassword_returnsSuccess() {
+        User admin = new User("admin", "admin1", true);
+        SignInActivity.LoginCheckResult result =
+                SignInActivity.checkLoginResult(admin, "admin1");
+        assertEquals(SignInActivity.LoginCheckResult.SUCCESS, result);
     }
 
     /// Test helpers beyond this point.
