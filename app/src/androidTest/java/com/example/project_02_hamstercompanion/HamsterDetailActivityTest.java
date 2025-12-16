@@ -28,14 +28,14 @@ public class HamsterDetailActivityTest {
     @Test
     public void intentFactory_putsCorrectHamsterId() {
 
-        // Arrange
-        Context context = ApplicationProvider.getApplicationContext();
-        int expectedId = 42; // any test ID you want
 
-        // Act
+        Context context = ApplicationProvider.getApplicationContext();
+        int expectedId = 42; // any test ID
+
+
         Intent intent = HamsterDetailActivity.intentFactory(context, expectedId);
 
-        // Assert
+
         int actualId = intent.getIntExtra(HamsterDetailActivity.EXTRA_HAMSTER_ID, -1);
 
         assertEquals(expectedId, actualId);
