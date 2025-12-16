@@ -18,6 +18,13 @@ public class SignInActivity extends AppCompatActivity {
 
     private HamsterRepository repository;
 
+    enum LoginCheckResult { // Unit test helper code. Result of a login attempt.
+        SUCCESS,            // Exists for ease of testing
+        USER_NOT_FOUND,
+        WRONG_PASSWORD,
+        INVALID_PASSWORD_INPUT
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,24 +48,56 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-    private void verifyUser(){
+    // Pure logic: doesn't touch Android or Room, just checks user + password
+    // Perfect for Unit Testing purposes.
+    LoginCheckResult checkLoginResult(User user, String inputPassword) {
+        if (inputPassword == null || inputPassword.isEmpty()) {
+            return LoginCheckResult.INVALID_PASSWORD_INPUT;
+        }
+
+        if (user == null) {
+            return LoginCheckResult.USER_NOT_FOUND;
+        }
+
+        String stored = user.getUserPassword();
+        if (stored == null) {
+            return LoginCheckResult.WRONG_PASSWORD;
+        }
+
+        return stored.equals(inputPassword)
+                ? LoginCheckResult.SUCCESS
+                : LoginCheckResult.WRONG_PASSWORD;
+    }
+
+
+    protected void verifyUser(){
         String username = binding.usernameSignInEditText.getText().toString();
+        String password = binding.passwordSignInEditText.getText().toString();
 
         if(username.isEmpty()){
             ToastMaker("Username shouldn't be blank.");
         }
         LiveData<User> userObserver = repository.getUserByUserName(username);
         userObserver.observe(this, user -> {
-            if (user != null) {
-                String password = binding.passwordSignInEditText.getText().toString();
-                if (password.equals(user.getUserPassword()))
-                    //startActivity();    // TODO: Assign target Activity to verifyUser
+            LoginCheckResult result = checkLoginResult(user, password);
+
+            switch (result) {
+                case SUCCESS:
                     ToastMaker("It's working!");
-                else {
-                    ToastMaker("Password Invalid");
-                }
-            } else {
-                ToastMaker(String.format("%s isn't a valid username", username));
+                    // TODO: Assign target Activity to verifyUser. startActivity();
+                    break;
+
+                case WRONG_PASSWORD:
+                    ToastMaker("Password invalid");
+                    break;
+
+                case USER_NOT_FOUND:
+                    ToastMaker(username + " isn't a valid username");
+                    break;
+
+                case INVALID_PASSWORD_INPUT:
+                    ToastMaker("Password shouldn't be blank.");
+                    break;
             }
         });
     }
