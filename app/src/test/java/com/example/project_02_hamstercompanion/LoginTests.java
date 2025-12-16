@@ -59,7 +59,7 @@ public class LoginTests {
                 signInActivity.checkLoginResult(user, "wrong");
 
         // Assert
-        assertEquals(SignInActivity.LoginCheckResult.INVALID_PASSWORD_INPUT, result);
+        assertEquals(SignInActivity.LoginCheckResult.WRONG_PASSWORD, result);
     }
 
     @Test

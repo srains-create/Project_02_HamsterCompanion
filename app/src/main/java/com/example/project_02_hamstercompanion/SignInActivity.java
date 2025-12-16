@@ -50,7 +50,7 @@ public class SignInActivity extends AppCompatActivity {
 
     // Pure logic: doesn't touch Android or Room, just checks user + password
     // Perfect for Unit Testing purposes.
-    LoginCheckResult checkLoginResult(User user, String inputPassword) {
+    static LoginCheckResult checkLoginResult(User user, String inputPassword) {
         if (inputPassword == null || inputPassword.isEmpty()) {
             return LoginCheckResult.INVALID_PASSWORD_INPUT;
         }
