@@ -39,6 +39,41 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(SignUpActivity.signUpIntentFactory(getApplicationContext()));
             }
         });
+
+        //Admin button logic -Jael
+        binding.adminButton.setOnClickListener(v -> {
+            String username = binding.usernameSignInEditText.getText().toString().trim();
+            String password = binding.passwordSignInEditText.getText().toString().trim();
+
+            if (username.isEmpty() || password.isEmpty()) {
+                ToastMaker("Username and password required");
+                return;
+            }
+
+            LiveData<User> adminObserver = repository.getUserByUserName(username);
+            adminObserver.observe(this, user -> {
+                if (user == null) {
+                    ToastMaker("Invalid admin credentials");
+                    return;
+                }
+                if (!user.getUserPassword().equals(password)) {
+                    ToastMaker("Invalid admin credentials");
+                    return;
+                }
+                if (!user.isAdmin()) {
+                    ToastMaker("Access denied: not an admin");
+                    return;
+                }
+
+                Intent intent = new Intent(
+                        SignInActivity.this,
+                        AdminActivity.class
+                );
+                startActivity(intent);
+                finish();
+            });
+        });
+
     }
 
     private void verifyUser(){
