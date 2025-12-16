@@ -50,8 +50,6 @@ public class SignUpActivity extends AppCompatActivity {
             new User(username, password, false);
             ToastMaker("New User Created!"); //Todo: Potentially Create responses for Dupe User cases
             startActivity(SignInActivity.signInIntentFactory(getApplicationContext()));
-            // Todo: Ask the group if it should go back to SignIn screen or just auto-SignIn and launch the main activity.
-
         }
     }
 
