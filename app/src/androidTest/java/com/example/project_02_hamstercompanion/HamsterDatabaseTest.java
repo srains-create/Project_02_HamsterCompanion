@@ -1,12 +1,10 @@
 package com.example.project_02_hamstercompanion;
 
-import static org.junit.Assert.assertEquals;
-
 import android.content.Context;
 
 import androidx.room.Room;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.project_02_hamstercompanion.database.CareLogDao;
 import com.example.project_02_hamstercompanion.database.HamsterDAO;
@@ -21,6 +19,8 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(AndroidJUnit4.class)
 public class HamsterDatabaseTest {
 
@@ -30,14 +30,8 @@ public class HamsterDatabaseTest {
 
     @Before
     public void createDb() {
-        Context context = InstrumentationRegistry
-                .getInstrumentation()
-                .getTargetContext();
-
-        db = Room.inMemoryDatabaseBuilder(
-                        context,
-                        HamsterDatabase.class
-                )
+        Context context = ApplicationProvider.getApplicationContext();
+        db = Room.inMemoryDatabaseBuilder(context, HamsterDatabase.class)
                 .allowMainThreadQueries()
                 .build();
 
@@ -50,12 +44,12 @@ public class HamsterDatabaseTest {
         db.close();
     }
 
-
+    // hamster stat updates
     @Test
-    public void updateHamsterStats_andInsertCareLog() {
-        // Arrange: create and insert a hamster
+    public void updateHamsterStats_areSavedInDatabase() {
+        // insert a hamster
         Hamster hamster = new Hamster(
-                1,          // userId (fake)
+                1,          // userId
                 "Testy",    // name
                 50,         // hunger
                 50,         // cleanliness
@@ -63,32 +57,43 @@ public class HamsterDatabaseTest {
         );
         hamsterDao.insert(hamster);
 
-        // read the hamster from the database
-        List<Hamster> allHamsters = hamsterDao.getAllHamsters();
-        Hamster stored = allHamsters.get(0);
-        int hamsterId = stored.getHamsterId();
+        Hamster fromDb = hamsterDao.getAllHamsters().get(0);
+        int id = fromDb.getHamsterId();
 
-        // change stats like handleFeed() would do
-        stored.setHunger(40);   // 50 - 10
-        stored.setEnergy(55);   // 50 + 5
-        hamsterDao.update(stored);
+        // change stats
+        fromDb.setHunger(40);
+        fromDb.setEnergy(60);
 
-        // Insert a care log row for "feed"
+        hamsterDao.update(fromDb);
+
+        Hamster updated = hamsterDao.getAllHamsters().get(0);
+        assertEquals(40, updated.getHunger());
+        assertEquals(60, updated.getEnergy());
+        assertEquals(id, updated.getHamsterId());
+    }
+
+    // care_log insert
+    @Test
+    public void insertCareLog_rowIsStoredForHamster() {
+        // insert hamster
+        Hamster hamster = new Hamster(1, "Logger", 50, 50, 50);
+        hamsterDao.insert(hamster);
+        int hamsterId = hamsterDao.getAllHamsters().get(0).getHamsterId();
+
+        // insert one care log
         CareLog log = new CareLog(
                 hamsterId,
                 "feed",
                 System.currentTimeMillis(),
-                "Fed hamster."
+                "Snack time"
         );
         careLogDao.insert(log);
 
-        Hamster updated = hamsterDao.getAllHamsters().get(0);
-        assertEquals(40, updated.getHunger());
-        assertEquals(55, updated.getEnergy());
-
-        // And we have exactly one care_log row for this hamster
+        // query logs for this hamster
         List<CareLog> logs = careLogDao.getLogsForHamster(hamsterId);
+
         assertEquals(1, logs.size());
         assertEquals("feed", logs.get(0).getActionType());
+        assertEquals(hamsterId, logs.get(0).getHamsterId());
     }
 }
