@@ -65,9 +65,6 @@ public class CareLogAdapter extends RecyclerView.Adapter<CareLogAdapter.CareLogV
             super(itemView);
             actionTypeTextView = itemView.findViewById(R.id.actionTypeTextView);
             timestampTextView = itemView.findViewById(R.id.timestampTextView);
-
         }
-
-
     }
 }
