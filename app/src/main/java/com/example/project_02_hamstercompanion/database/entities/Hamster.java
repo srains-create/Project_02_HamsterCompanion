@@ -63,19 +63,19 @@ public class Hamster {
         return Objects.hash(hamsterId, userId, name, hunger, cleanliness, energy, adoptionDate);
     }
 
-    public Integer getHamsterId() {
+    public int getHamsterId() {
         return hamsterId;
     }
 
-    public void setHamsterId(Integer hamsterId) {
+    public void setHamsterId(int hamsterId) {
         this.hamsterId = hamsterId;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
