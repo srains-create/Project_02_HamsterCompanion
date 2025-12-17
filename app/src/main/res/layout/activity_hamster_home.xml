@@ -21,6 +21,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.053" />
 
+    <TextView
+        android:id="@+id/usernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome!"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/hamsterHomeTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hamsterRecycler"
         android:layout_width="306dp"
@@ -45,6 +57,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hamsterRecycler" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
