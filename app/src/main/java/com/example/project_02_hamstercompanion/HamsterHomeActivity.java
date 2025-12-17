@@ -30,15 +30,26 @@ public class HamsterHomeActivity extends AppCompatActivity {
         int userId = getIntent().getIntExtra("USER_ID", -1);
         String username = getIntent().getStringExtra("USERNAME");
         // Show username on screen
-        binding.usernameTextView.setText("Welcome, " + username);
+       // binding.usernameTextView.setText("Welcome, " + username); I commented this out bc it showed in purple screen (potential bug). -Jael
 
-        binding.careLogButton.setOnClickListener(v -> {
+        binding.careLogButton.setOnClickListener(v -> {//for Care Log button behavior -Jael
             //           startActivity(new Intent(HamsterHomeActivity.this, CareLogActivity.class));
             Intent intent = new Intent(HamsterHomeActivity.this, CareLogActivity.class);
             intent.putExtra("USER_ID", userId);
             intent.putExtra("USERNAME", username);
             startActivity(intent);
         });
+
+        binding.backButton1.setOnClickListener(v -> {//the "back" button behavior in Care Log purple page. -Jael
+            Intent intent = new Intent(HamsterHomeActivity.this, MainActivity.class);
+            intent.putExtra("USER_ID", userId);
+            intent.putExtra("USERNAME", username);
+            startActivity(intent);
+            finish();
+        });
+
+
+
 
         repository = HamsterRepository.getRepository(getApplication());
 

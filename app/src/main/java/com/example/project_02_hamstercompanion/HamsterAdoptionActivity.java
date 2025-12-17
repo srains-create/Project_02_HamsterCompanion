@@ -31,6 +31,14 @@ public class HamsterAdoptionActivity extends AppCompatActivity {
         int userId  = getIntent().getIntExtra("USER_ID", -1);
         String username = getIntent().getStringExtra("USERNAME");
 
+        binding.backButton2.setOnClickListener(v -> {
+            Intent intent = new Intent(HamsterAdoptionActivity.this, MainActivity.class);
+            intent.putExtra("USER_ID", userId);
+            intent.putExtra("USERNAME", username);
+            startActivity(intent);
+            finish();
+        });
+
         repository = HamsterRepository.getRepository(getApplication());
 
         hamsterViewModel = new ViewModelProvider(this).get(HamsterViewModel.class);

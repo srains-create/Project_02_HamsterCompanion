@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         username = getIntent().getStringExtra("USERNAME");
 
         //show username
-        binding.welcomeTextView.setText("Welcome, " + username + " (" + userId + ")");
+        binding.welcomeTextView.setText("Welcome, " + username);//I took this out + (userId) to fix awkward number next to welcome text-Jael
 
         //hamster room button
         binding.hamsterRoomButton.setOnClickListener(v ->{
