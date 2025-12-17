@@ -116,6 +116,10 @@ public class HamsterRepository {
         return hamsterDAO.getHamstersForAdoptionLiveData();
     }
 
+    public LiveData<List<CareLog>> getAllCareLogs() {
+        return careLogDao.getAllLogsLiveData();
+    }
+
 //    Future<HamsterRepository> future =
 //            HamsterDatabase.databaseWriteExecutor.submit(
 //                    new Callable<HamsterRepository>() {
