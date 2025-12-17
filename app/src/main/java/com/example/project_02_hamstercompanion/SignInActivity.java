@@ -8,15 +8,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.project_02_hamstercompanion.database.HamsterRepository;
 import com.example.project_02_hamstercompanion.database.entities.User;
 import com.example.project_02_hamstercompanion.databinding.ActivitySigninBinding;
+import com.example.project_02_hamstercompanion.viewHolders.HamsterViewModel;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySigninBinding binding;
 
     private HamsterRepository repository;
+    private HamsterViewModel hamsterViewModel;
 
     enum LoginCheckResult { // Unit test helper code. Result of a login attempt.
         SUCCESS,            // Exists for ease of testing
@@ -31,6 +34,7 @@ public class SignInActivity extends AppCompatActivity {
         binding = ActivitySigninBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        hamsterViewModel = new ViewModelProvider(this).get(HamsterViewModel.class);
         repository = HamsterRepository.getRepository(getApplication());
 
         binding.signInButton.setOnClickListener(new View.OnClickListener() {
