@@ -35,4 +35,7 @@ public class CareLogViewModel extends AndroidViewModel {
     }
 
 
+    public LiveData<List<CareLog>> getAllLogs() {
+        return repository.getAllCareLogs();
+    }
 }

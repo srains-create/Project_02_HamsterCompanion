@@ -28,4 +28,7 @@ public interface CareLogDao {
 
     @Query("DELETE FROM " + HamsterDatabase.CARE_LOG_TABLE)
     void deleteAll();
+
+    @Query("SELECT * FROM " + HamsterDatabase.CARE_LOG_TABLE + " ORDER BY timestamp DESC")
+    LiveData<List<CareLog>> getAllLogsLiveData();
 }

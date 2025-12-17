@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -73,7 +74,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/testDataButton" />
 
-
+    <Button
+        android:id="@+id/signOutButton"
+        android:layout_width="118dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Sign Out"
+        android:fontFamily="@font/adlam_display"
+        android:textSize="16sp"
+        android:textColor="#D9EDED"
+        app:backgroundTint="#96539D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminTings" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
