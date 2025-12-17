@@ -51,7 +51,13 @@ public abstract class HamsterDatabase extends RoomDatabase {
                                 "admin1",
                                 true
                         );
+                        User user1 = new User(
+                                "user1",
+                                "user1",
+                                false
+                        );
                         dao.insert(admin);
+                        dao.insert(user1);
                     });
                 }
             };
@@ -65,7 +71,7 @@ public abstract class HamsterDatabase extends RoomDatabase {
         synchronized (HamsterDatabase.class) {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
-                                context.getApplicationContext(), HamsterDatabase.class, "HamsterDatabase.db").fallbackToDestructiveMigration().build();
+                                context.getApplicationContext(), HamsterDatabase.class, "HamsterDatabase.db").addCallback(roomCallback).fallbackToDestructiveMigration().build();
             }
         }
         return INSTANCE;
