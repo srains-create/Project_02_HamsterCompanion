@@ -59,6 +59,7 @@ public class SignInActivity extends AppCompatActivity {
 
             LiveData<User> adminObserver = repository.getUserByUserName(username);
             adminObserver.observe(this, user -> {
+                adminObserver.removeObservers(this);
                 if (user == null) {
                     ToastMaker("Invalid admin credentials");
                     return;

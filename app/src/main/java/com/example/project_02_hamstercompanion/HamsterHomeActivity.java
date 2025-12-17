@@ -3,6 +3,7 @@ package com.example.project_02_hamstercompanion;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,6 +25,9 @@ public class HamsterHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityHamsterHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.careLogButton.setOnClickListener(v -> {
+            startActivity(new Intent(HamsterHomeActivity.this, CareLogActivity.class));
+        });
 
         // get data from SignInActivity
         int userId = getIntent().getIntExtra("USER_ID", -1);
