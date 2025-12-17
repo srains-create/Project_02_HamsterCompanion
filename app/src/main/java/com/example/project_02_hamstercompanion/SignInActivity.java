@@ -114,17 +114,29 @@ public class SignInActivity extends AppCompatActivity {
         }
         LiveData<User> userObserver = repository.getUserByUserName(username);
         userObserver.observe(this, user -> {
+            // stop observing after one result
+            userObserver.removeObservers(this);
             LoginCheckResult result = checkLoginResult(user, password);
 
             switch (result) {
-                case SUCCESS:
-                    ToastMaker("It's working!");
+                case SUCCESS: {
+                    // startActivity
+                    Intent intent = HamsterHomeActivity.hamsterHomeIntentFactory(
+                            getApplicationContext(),
+                            user.getUserId(),
+                            user.getUserName()
+                    );
+                    startActivity(intent);
+                    finish();
+                    break;
+                }
+     //               ToastMaker("It's working!");
                     // TODO: Assign target Activity to verifyUser. startActivity();
-                    break;
+    //                break;
 
-                case WRONG_PASSWORD:
-                    ToastMaker("Password invalid");
-                    break;
+    //            case WRONG_PASSWORD:
+     //               ToastMaker("Password invalid");
+     //               break;
 
                 case USER_NOT_FOUND:
                     ToastMaker(username + " isn't a valid username");

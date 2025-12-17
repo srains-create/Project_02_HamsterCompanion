@@ -1,5 +1,7 @@
 package com.example.project_02_hamstercompanion;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +25,12 @@ public class HamsterHomeActivity extends AppCompatActivity {
         binding = ActivityHamsterHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // get data from SignInActivity
+        int userId = getIntent().getIntExtra("USER_ID", -1);
+        String username = getIntent().getStringExtra("USERNAME");
+        // Show username on screen
+        binding.usernameTextView.setText("Welcome, " + username);
+
         repository = HamsterRepository.getRepository(getApplication());
 
         hamsterViewModel = new ViewModelProvider(this).get(HamsterViewModel.class);
@@ -37,5 +45,12 @@ public class HamsterHomeActivity extends AppCompatActivity {
 //            adapter.submitList(hamsters);
 //        });
 
+    }
+
+    public static Intent hamsterHomeIntentFactory(Context context, int userId, String username){
+        Intent intent = new Intent(context, HamsterHomeActivity.class);
+        intent.putExtra("USER_ID", userId);
+        intent.putExtra("USERNAME", username);
+        return intent;
     }
 }
