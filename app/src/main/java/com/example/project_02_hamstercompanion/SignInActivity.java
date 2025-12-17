@@ -114,12 +114,15 @@ public class SignInActivity extends AppCompatActivity {
         }
         LiveData<User> userObserver = repository.getUserByUserName(username);
         userObserver.observe(this, user -> {
+            userObserver.removeObservers(this);//Jael added
+
             LoginCheckResult result = checkLoginResult(user, password);
 
             switch (result) {
                 case SUCCESS:
                     ToastMaker("It's working!");
-                    // TODO: Assign target Activity to verifyUser. startActivity();
+                    startActivity(new Intent(SignInActivity.this, MainActivity.class));//Jael added
+                    finish();
                     break;
 
                 case WRONG_PASSWORD:
