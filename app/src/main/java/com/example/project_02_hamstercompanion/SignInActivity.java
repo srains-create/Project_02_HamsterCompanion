@@ -22,6 +22,7 @@ public class SignInActivity extends AppCompatActivity {
         SUCCESS,            // Exists for ease of testing
         USER_NOT_FOUND,
         WRONG_PASSWORD,
+        INVALID_USERNAME_INPUT,
         INVALID_PASSWORD_INPUT
     }
 
@@ -112,6 +113,7 @@ public class SignInActivity extends AppCompatActivity {
 
         if(username.isEmpty()){
             ToastMaker("Username shouldn't be blank.");
+            return;
         }
         LiveData<User> userObserver = repository.getUserByUserName(username);
         userObserver.observe(this, user -> {
@@ -122,11 +124,9 @@ public class SignInActivity extends AppCompatActivity {
             switch (result) {
                 case SUCCESS: {
                     // startActivity
-                    Intent intent = HamsterHomeActivity.hamsterHomeIntentFactory(
-                            getApplicationContext(),
-                            user.getUserId(),
-                            user.getUserName()
-                    );
+                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                    intent.putExtra("USER_ID", user.getUserId());
+                    intent.putExtra("USERNAME", user.getUserName());
                     startActivity(intent);
                     finish();
                     break;
@@ -135,9 +135,9 @@ public class SignInActivity extends AppCompatActivity {
                     // TODO: Assign target Activity to verifyUser. startActivity();
     //                break;
 
-    //            case WRONG_PASSWORD:
-     //               ToastMaker("Password invalid");
-     //               break;
+                case WRONG_PASSWORD:
+                    ToastMaker("Password invalid");
+                    break;
 
                 case USER_NOT_FOUND:
                     ToastMaker(username + " isn't a valid username");
@@ -145,6 +145,10 @@ public class SignInActivity extends AppCompatActivity {
 
                 case INVALID_PASSWORD_INPUT:
                     ToastMaker("Password shouldn't be blank.");
+                    break;
+
+                case INVALID_USERNAME_INPUT:
+                    ToastMaker("Username shouldn't be blank.");
                     break;
             }
         });

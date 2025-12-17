@@ -25,15 +25,20 @@ public class HamsterHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityHamsterHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.careLogButton.setOnClickListener(v -> {
-            startActivity(new Intent(HamsterHomeActivity.this, CareLogActivity.class));
-        });
 
         // get data from SignInActivity
         int userId = getIntent().getIntExtra("USER_ID", -1);
         String username = getIntent().getStringExtra("USERNAME");
         // Show username on screen
         binding.usernameTextView.setText("Welcome, " + username);
+
+        binding.careLogButton.setOnClickListener(v -> {
+            //           startActivity(new Intent(HamsterHomeActivity.this, CareLogActivity.class));
+            Intent intent = new Intent(HamsterHomeActivity.this, CareLogActivity.class);
+            intent.putExtra("USER_ID", userId);
+            intent.putExtra("USERNAME", username);
+            startActivity(intent);
+        });
 
         repository = HamsterRepository.getRepository(getApplication());
 
