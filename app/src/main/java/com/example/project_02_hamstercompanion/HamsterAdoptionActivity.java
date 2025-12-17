@@ -1,5 +1,7 @@
 package com.example.project_02_hamstercompanion;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,15 +23,22 @@ public class HamsterAdoptionActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityHamsterAdoptionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // get data from MainActivity / SignInActivity
+        int userId  = getIntent().getIntExtra("USER_ID", -1);
+        String username = getIntent().getStringExtra("USERNAME");
 
         repository = HamsterRepository.getRepository(getApplication());
 
         hamsterViewModel = new ViewModelProvider(this).get(HamsterViewModel.class);
+
         RecyclerView recyclerView = binding.hamsterRecycler;
         final HamsterAdapter adapter = new HamsterAdapter(new HamsterAdapter.HamsterDiff(),
                 HamsterAdapter.ADOPTION_CENTER);
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -37,5 +46,12 @@ public class HamsterAdoptionActivity extends AppCompatActivity {
             adapter.submitList(hamsters);
         });
 
+    }
+
+    public static Intent adoptionIntentFactory(Context context, int userId, String username){
+        Intent intent = new Intent(context, HamsterAdoptionActivity.class);
+        intent.putExtra("USER_ID", userId);
+        intent.putExtra("USERNAME", username);
+        return intent;
     }
 }
