@@ -32,6 +32,10 @@
             android:name=".HamsterHomeActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".HamsterAdoptionActivity"
+            android:exported="false" />
+
 
         <activity android:name=".HamsterDetailActivity" />
         <activity android:name=".AdminActivity"/>
