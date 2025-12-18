@@ -69,7 +69,7 @@
         android:fontFamily="@font/adlam_display"
         android:gravity="center"
         android:stateListAnimator="@null"
-        android:text="@string/settings"
+        android:text="@string/manage_hamsters"
         android:textColor="#D285b5"
         android:textSize="32sp"
         app:backgroundTint="#E9E7CC"

@@ -36,7 +36,6 @@ public class HamsterDetailActivity extends AppCompatActivity {
     private HamsterRepository repository;
     private Hamster currentHamster;
 
-
     public static Intent intentFactory(Context context, int hamsterId) {
         Intent intent = new Intent(context, HamsterDetailActivity.class);
         intent.putExtra(EXTRA_HAMSTER_ID, hamsterId);
@@ -106,24 +105,19 @@ public class HamsterDetailActivity extends AppCompatActivity {
     }
 
     private void loadHamster(int hamsterId) {
-        loadHamster(hamsterId);
-        LiveData<Hamster> hamsterLiveData = repository.getHamsterById(hamsterId);
-        hamsterLiveData.observe(this, new Observer<Hamster>() {
-            @Override
-            public void onChanged(Hamster hamster) {
-                if (hamster == null) {
-                    return;
-                }
-
-                currentHamster = hamster;
-                updateUiFromHamster();
-
+        repository.getHamsterById(hamsterId).observe(this, hamster -> {
+            if (hamster == null) {
+                // if something went wrong, close the screen
+                finish();
+                return;
             }
+
+            currentHamster = hamster;
+            updateUiFromHamster();
         });
     }
 
     private void updateUiFromHamster() {
-
         if (currentHamster == null) {
             return;
         }
@@ -134,23 +128,123 @@ public class HamsterDetailActivity extends AppCompatActivity {
         textEnergyValue.setText(String.valueOf(currentHamster.getEnergy()));
     }
 
+    private int clampStat(int value) {
+        if (value < 0) return 0;
+        if (value > 100) return 100;
+        return value;
+    }
 
+    // This is original methods
+//    private void handleFeed() {
+//        // reduce hunger by 10, minimum 0.
+//        // increase energy by 5, maximum 100.
+//        if (currentHamster == null) return;
+//
+//        Toast.makeText(this, "Feed clicked", Toast.LENGTH_SHORT).show();
+//
+//        int hunger = currentHamster.getHunger();
+//        hunger = hunger - 10;
+//        if (hunger < 0) hunger = 0;
+//        currentHamster.setHunger(hunger);
+//
+//        int energy = currentHamster.getEnergy();
+//        energy = energy + 5;
+//        if (energy > 100) energy = 100;
+//        currentHamster.setEnergy(energy);
+//
+//        repository.updateHamster(currentHamster);
+//
+//        CareLog log = new CareLog(
+//                currentHamster.getHamsterId(),
+//                "feed",
+//                System.currentTimeMillis(),
+//                "Fed the hamster."
+//        );
+//        repository.insertCareLog(log);
+//    }
+//
+//    private void handleClean() {
+//        if (currentHamster == null) return;
+//
+//        Toast.makeText(this, "Clean clicked", Toast.LENGTH_SHORT).show();
+//
+//        int cleanliness = currentHamster.getCleanliness();
+//        cleanliness = cleanliness + 10;
+//        if (cleanliness > 100) cleanliness = 100;
+//        currentHamster.setCleanliness(cleanliness);
+//
+//        repository.updateHamster(currentHamster);
+//
+//        CareLog log = new CareLog(
+//                currentHamster.getHamsterId(),
+//                "clean",
+//                System.currentTimeMillis(),
+//                "Hamster is cleaned."
+//        );
+//        repository.insertCareLog(log);
+//
+//        updateUiFromHamster();
+//    }
+//
+//    private void handlePlay() {
+//        if (currentHamster == null) return;
+//
+//        Toast.makeText(this, "Play clicked", Toast.LENGTH_SHORT).show();
+//
+//        int hunger = currentHamster.getHunger();
+//        hunger = hunger + 5;
+//        if (hunger > 100) hunger = 100;
+//        currentHamster.setHunger(hunger);
+//
+//        int energy = currentHamster.getEnergy();
+//        energy = energy - 5;
+//        if (energy < 0) energy = 0;
+//        currentHamster.setEnergy(energy);
+//
+//        repository.updateHamster(currentHamster);
+//
+//        CareLog log = new CareLog(
+//                currentHamster.getHamsterId(),
+//                "play",
+//                System.currentTimeMillis(),
+//                "Played with hamster."
+//        );
+//        repository.insertCareLog(log);
+//
+//        updateUiFromHamster();
+//    }
+//
+//    private void handleRest() {
+//        if (currentHamster == null) return;
+//
+//        Toast.makeText(this, "Rest clicked", Toast.LENGTH_SHORT).show();
+//
+//        int energy = currentHamster.getEnergy();
+//        energy = energy + 10;
+//        if (energy > 100) energy = 100;
+//        currentHamster.setEnergy(energy);
+//
+//        CareLog log = new CareLog(
+//                currentHamster.getHamsterId(),
+//                "rest",
+//                System.currentTimeMillis(),
+//                "Hamster rested."
+//        );
+//        repository.insertCareLog(log);
+//
+//        updateUiFromHamster();
+//    }
+
+    //edited by KHanh Ho 12/17/25
     private void handleFeed() {
-        // reduce hunger by 10, minimum 0.
-        // increase energy by 5, maximum 100.
         if (currentHamster == null) return;
 
-        Toast.makeText(this, "Feed clicked", Toast.LENGTH_SHORT).show();
+        // change stats
+        int hunger = currentHamster.getHunger() - 10;
+        int energy = currentHamster.getEnergy() + 5;
 
-        int hunger = currentHamster.getHunger();
-        hunger = hunger - 10;
-        if (hunger < 0) hunger = 0;
-        currentHamster.setHunger(hunger);
-
-        int energy = currentHamster.getEnergy();
-        energy = energy + 5;
-        if (energy > 100) energy = 100;
-        currentHamster.setEnergy(energy);
+        currentHamster.setHunger(clampStat(hunger));
+        currentHamster.setEnergy(clampStat(energy));
 
         repository.updateHamster(currentHamster);
 
@@ -158,20 +252,18 @@ public class HamsterDetailActivity extends AppCompatActivity {
                 currentHamster.getHamsterId(),
                 "feed",
                 System.currentTimeMillis(),
-                "Fed the hamster."
+                "Hamster was fed."
         );
         repository.insertCareLog(log);
+
+        updateUiFromHamster();
     }
 
     private void handleClean() {
         if (currentHamster == null) return;
 
-        Toast.makeText(this, "Clean clicked", Toast.LENGTH_SHORT).show();
-
-        int cleanliness = currentHamster.getCleanliness();
-        cleanliness = cleanliness + 10;
-        if (cleanliness > 100) cleanliness = 100;
-        currentHamster.setCleanliness(cleanliness);
+        int cleanliness = currentHamster.getCleanliness() + 10;
+        currentHamster.setCleanliness(clampStat(cleanliness));
 
         repository.updateHamster(currentHamster);
 
@@ -179,7 +271,7 @@ public class HamsterDetailActivity extends AppCompatActivity {
                 currentHamster.getHamsterId(),
                 "clean",
                 System.currentTimeMillis(),
-                "Hamster is cleaned."
+                "Hamster was cleaned."
         );
         repository.insertCareLog(log);
 
@@ -189,17 +281,11 @@ public class HamsterDetailActivity extends AppCompatActivity {
     private void handlePlay() {
         if (currentHamster == null) return;
 
-        Toast.makeText(this, "Play clicked", Toast.LENGTH_SHORT).show();
+        int hunger = currentHamster.getHunger() + 5;
+        int energy = currentHamster.getEnergy() - 5;
 
-        int hunger = currentHamster.getHunger();
-        hunger = hunger + 5;
-        if (hunger > 100) hunger = 100;
-        currentHamster.setHunger(hunger);
-
-        int energy = currentHamster.getEnergy();
-        energy = energy - 5;
-        if (energy < 0) energy = 0;
-        currentHamster.setEnergy(energy);
+        currentHamster.setHunger(clampStat(hunger));
+        currentHamster.setEnergy(clampStat(energy));
 
         repository.updateHamster(currentHamster);
 
@@ -207,7 +293,7 @@ public class HamsterDetailActivity extends AppCompatActivity {
                 currentHamster.getHamsterId(),
                 "play",
                 System.currentTimeMillis(),
-                "Played with hamster."
+                "Hamster played."
         );
         repository.insertCareLog(log);
 
@@ -217,12 +303,10 @@ public class HamsterDetailActivity extends AppCompatActivity {
     private void handleRest() {
         if (currentHamster == null) return;
 
-        Toast.makeText(this, "Rest clicked", Toast.LENGTH_SHORT).show();
+        int energy = currentHamster.getEnergy() + 15;
+        currentHamster.setEnergy(clampStat(energy));
 
-        int energy = currentHamster.getEnergy();
-        energy = energy + 10;
-        if (energy > 100) energy = 100;
-        currentHamster.setEnergy(energy);
+        repository.updateHamster(currentHamster);
 
         CareLog log = new CareLog(
                 currentHamster.getHamsterId(),
@@ -234,4 +318,5 @@ public class HamsterDetailActivity extends AppCompatActivity {
 
         updateUiFromHamster();
     }
+
 }
