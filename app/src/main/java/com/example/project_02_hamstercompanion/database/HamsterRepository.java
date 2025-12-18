@@ -94,10 +94,17 @@ public class HamsterRepository {
         return careLogDao.getLogsForHamsterLiveData(hamsterId);
     }
 
-    public void insertUser(User... users) {
+    public void insertUser(User user) {
         HamsterDatabase.databaseWriteExecutor.execute(() -> {
-            userDAO.insert(users);
+            userDAO.insert(user);
         });
+    }
+
+    public LiveData<List<User>> getAllUsers() {
+        return userDAO.getAllUsers();
+    }
+    public void deleteUser(User user) {
+        HamsterDatabase.databaseWriteExecutor.execute(() -> userDAO.delete(user));
     }
 
     public LiveData<User> getUserByUserId(int userId) {

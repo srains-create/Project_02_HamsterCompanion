@@ -16,5 +16,9 @@ public class AdminActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        findViewById(R.id.manageUsers).setOnClickListener(v ->  {
+            startActivity(new Intent(AdminActivity.this, ManageUsersActivity.class));
+        });
     }
 }
