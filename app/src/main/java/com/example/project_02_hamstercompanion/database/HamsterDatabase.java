@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 
 @Database(
         entities = {User.class, Hamster.class, CareLog.class},
-        version = 1,
+        version = 2,
         exportSchema = false
 )
 @TypeConverters({LocalDataTypeConverter.class})
@@ -58,6 +58,40 @@ public abstract class HamsterDatabase extends RoomDatabase {
                         );
                         dao.insert(admin);
                         dao.insert(user1);
+
+                        //adding default hamsters
+                        HamsterDAO hamsterDAO = INSTANCE.hamsterDao();
+                        User owner = dao.getUserByCredentials("user1","user1");
+                        //owned hamsters
+                        Hamster h1 = new Hamster(
+                                owner.getUserId(),
+                                "Hamster1",
+                                50,
+                                40,
+                                30);
+                        //unowned hamsters
+                        Hamster h2 = new Hamster(
+                                null,
+                                "Bob",
+                                5,
+                                4,
+                                3);
+                        Hamster h3 = new Hamster(
+                                null,
+                                "Celery",
+                                10,
+                                3,
+                                45);
+                        Hamster h4 = new Hamster(
+                                null,
+                                "Darth Vader",
+                                1,
+                                2,
+                                3);
+                        hamsterDAO.insert(h1);
+                        hamsterDAO.insert(h2);
+                        hamsterDAO.insert(h3);
+                        hamsterDAO.insert(h4);
                     });
                 }
             };
