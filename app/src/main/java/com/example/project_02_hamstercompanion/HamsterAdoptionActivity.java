@@ -3,6 +3,7 @@ package com.example.project_02_hamstercompanion;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,16 +32,14 @@ public class HamsterAdoptionActivity extends AppCompatActivity {
         int userId  = getIntent().getIntExtra("USER_ID", -1);
         String username = getIntent().getStringExtra("USERNAME");
 
+        //back button on-click
         binding.backButton2.setOnClickListener(v -> {
-            Intent intent = new Intent(HamsterAdoptionActivity.this, MainActivity.class);
-            intent.putExtra("USER_ID", userId);
-            intent.putExtra("USERNAME", username);
-            startActivity(intent);
-            finish();
+            startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(),userId,username));
         });
 
         repository = HamsterRepository.getRepository(getApplication());
 
+        //setting up recyclerview
         hamsterViewModel = new ViewModelProvider(this).get(HamsterViewModel.class);
 
         RecyclerView recyclerView = binding.hamsterRecycler;

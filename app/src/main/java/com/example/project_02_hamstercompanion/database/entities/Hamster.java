@@ -31,6 +31,9 @@ public class Hamster {
         this.cleanliness = cleanliness;
         this.energy = energy;
         //null adoptionDate = not adopted
+        if (userId != null) {
+            this.adoptionDate = LocalDateTime.now();
+        }
     }
 
     @NonNull
