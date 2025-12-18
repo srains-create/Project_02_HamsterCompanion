@@ -1,5 +1,7 @@
 package com.example.project_02_hamstercompanion.viewHolders;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +35,10 @@ public class HamsterViewHolder extends RecyclerView.ViewHolder {
         if (hamster.getAdoptionDate() != null) {
             //not null adoption date = its in hamster home
             hamsterButton.setText("Care");
+            hamsterButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#67568F")));
         } else {
             hamsterButton.setText("Adopt");
+            hamsterButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#71945D")));
         }
     }
 

@@ -45,6 +45,7 @@ public class HamsterHomeActivity extends AppCompatActivity {
 
         repository = HamsterRepository.getRepository(getApplication());
 
+        //setting up recycler
         hamsterViewModel = new ViewModelProvider(this).get(HamsterViewModel.class);
         RecyclerView recyclerView = binding.hamsterRecycler;
         final HamsterAdapter adapter = new HamsterAdapter(new HamsterAdapter.HamsterDiff(),
@@ -52,10 +53,9 @@ public class HamsterHomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //TODO: replace "userId" with user id once login is implemented
-//        hamsterViewModel.getHamstersOfUser(userId).observe(this, hamsters -> {
-//            adapter.submitList(hamsters);
-//        });
+        hamsterViewModel.getHamstersOfUser(userId).observe(this, hamsters -> {
+            adapter.submitList(hamsters);
+        });
 
     }
 
