@@ -15,7 +15,7 @@ public class Hamster {
     @PrimaryKey(autoGenerate = true)
     private int hamsterId;
 
-    private int userId;
+    private Integer userId;
     private String name;
     private int hunger;
     private int cleanliness;
@@ -23,14 +23,19 @@ public class Hamster {
     //null adoptionDate = not adopted
     private LocalDateTime adoptionDate;
 
-    public Hamster(int userId, String name, int hunger, int cleanliness, int energy) {
-        this.userId = userId;
+    public Hamster(Integer userId, String name, int hunger, int cleanliness, int energy) {
+        if(userId != null) {
+            //not null user id -> owned hamster
+            //owned hamster needs owner and adoption date
+            this.userId = userId;
+            this.adoptionDate = LocalDateTime.now();
+        }
         this.name = name;
         this.hunger = hunger;
         this.cleanliness = cleanliness;
         this.energy = energy;
-        //null adoptionDate = not adopted
     }
+
 
     @NonNull
     @Override
@@ -66,11 +71,11 @@ public class Hamster {
         this.hamsterId = hamsterId;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
