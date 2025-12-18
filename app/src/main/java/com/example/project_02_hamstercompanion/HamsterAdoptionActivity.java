@@ -15,11 +15,14 @@ import com.example.project_02_hamstercompanion.databinding.ActivityHamsterAdopti
 import com.example.project_02_hamstercompanion.viewHolders.HamsterAdapter;
 import com.example.project_02_hamstercompanion.viewHolders.HamsterViewModel;
 
+import java.time.LocalDateTime;
+
 public class HamsterAdoptionActivity extends AppCompatActivity implements HamsterAdapter.HamsterAdapterListener {
 
     private ActivityHamsterAdoptionBinding binding;
     private HamsterRepository repository;
     private HamsterViewModel hamsterViewModel;
+    int loggedInUserId;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +32,14 @@ public class HamsterAdoptionActivity extends AppCompatActivity implements Hamste
         setContentView(binding.getRoot());
 
         // get data from MainActivity / SignInActivity
-        int userId  = getIntent().getIntExtra("USER_ID", -1);
+        this.loggedInUserId  = getIntent().getIntExtra("USER_ID", -1);
         String username = getIntent().getStringExtra("USERNAME");
 
         //back button onclick
         binding.backButton2.setOnClickListener(v -> {
-            startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(),userId,username));
+            startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext()
+                    ,this.loggedInUserId
+                    ,username));
         });
 
         //get repo
@@ -45,7 +50,7 @@ public class HamsterAdoptionActivity extends AppCompatActivity implements Hamste
 
         RecyclerView recyclerView = binding.hamsterRecycler;
         final HamsterAdapter adapter = new HamsterAdapter(new HamsterAdapter.HamsterDiff(),
-                HamsterAdapter.ADOPTION_CENTER);
+                this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -57,8 +62,10 @@ public class HamsterAdoptionActivity extends AppCompatActivity implements Hamste
     }
 
     public void adoptHamster(Hamster hamster){
-        int hamsterId = hamster.getHamsterId();
-       //TODO: code to adopt that hamster
+        hamster.setAdoptionDate(LocalDateTime.now());
+        hamster.setUserId(loggedInUserId);
+        repository.updateHamster(hamster);
+
     }
 
     public static Intent adoptionIntentFactory(Context context, int userId, String username){

@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_02_hamstercompanion.database.HamsterRepository;
+import com.example.project_02_hamstercompanion.database.entities.Hamster;
 import com.example.project_02_hamstercompanion.databinding.ActivityHamsterHomeBinding;
 import com.example.project_02_hamstercompanion.viewHolders.HamsterAdapter;
 import com.example.project_02_hamstercompanion.viewHolders.HamsterViewModel;
 
-public class HamsterHomeActivity extends AppCompatActivity {
+public class HamsterHomeActivity extends AppCompatActivity implements HamsterAdapter.HamsterAdapterListener {
     private ActivityHamsterHomeBinding binding;
     private HamsterRepository repository;
     private HamsterViewModel hamsterViewModel;
@@ -49,7 +50,7 @@ public class HamsterHomeActivity extends AppCompatActivity {
         hamsterViewModel = new ViewModelProvider(this).get(HamsterViewModel.class);
         RecyclerView recyclerView = binding.hamsterRecycler;
         final HamsterAdapter adapter = new HamsterAdapter(new HamsterAdapter.HamsterDiff(),
-                HamsterAdapter.HAMSTER_HOME);
+               this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -64,5 +65,9 @@ public class HamsterHomeActivity extends AppCompatActivity {
         intent.putExtra("USER_ID", userId);
         intent.putExtra("USERNAME", username);
         return intent;
+    }
+
+    public void adoptHamster(Hamster hamster) {
+        return;
     }
 }

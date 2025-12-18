@@ -12,13 +12,14 @@ import java.time.LocalDateTime;
 
 public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
 
-
+    HamsterAdapterListener listener;
     public static final int HAMSTER_HOME = 1;
-    public static final int ADOPTION_CENTER = 2;
 
 
-    public HamsterAdapter(@NonNull DiffUtil.ItemCallback<Hamster> diffCallback, int buttonType){
+
+    public HamsterAdapter(@NonNull DiffUtil.ItemCallback<Hamster> diffCallback, HamsterAdapterListener listener){
         super(diffCallback);
+        this.listener = listener;
     }
 
     @NonNull
@@ -36,7 +37,7 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
             public void onClick(View v) {
                 if (hamster.getAdoptionDate() == null) {
                     //tell activity to change hamster
-
+                    listener.adoptHamster(hamster);
                 } else {
                     //open care log
                 }
