@@ -21,8 +21,7 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
     @NonNull
     @Override
     public HamsterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        HamsterViewHolder holder = HamsterViewHolder.create(parent);
-        return holder;
+        return HamsterViewHolder.create(parent);
     }
 
     @Override
