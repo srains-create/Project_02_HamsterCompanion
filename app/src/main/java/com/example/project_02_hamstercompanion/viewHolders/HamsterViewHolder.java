@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull; //Jael added
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_02_hamstercompanion.R;
@@ -18,14 +19,14 @@ public class HamsterViewHolder extends RecyclerView.ViewHolder {
     final Button hamsterButton;
     //TODO: need a referece to listener interface
 
-    private HamsterViewHolder(View hamsterView) {
-        super(hamsterView);
+    private HamsterViewHolder(@NonNull View itemView) {
+        super(itemView);
         //getting references
-        hamsterName = hamsterView.findViewById(R.id.hamsterNameTextView);
-        hamsterHunger = hamsterView.findViewById(R.id.hamsterHungerTextView);
-        hamsterEnergy = hamsterView.findViewById(R.id.hamsterEnergyTextView);
-        hamsterCleanliness = hamsterView.findViewById(R.id.hamsterCleanlinessTextView);
-        hamsterButton = hamsterView.findViewById(R.id.hamsterActionButton);
+        hamsterName = itemView.findViewById(R.id.hamsterNameTextView);
+        hamsterHunger = itemView.findViewById(R.id.hamsterHungerTextView);
+        hamsterEnergy = itemView.findViewById(R.id.hamsterEnergyTextView);
+        hamsterCleanliness = itemView.findViewById(R.id.hamsterCleanlinessTextView);
+        hamsterButton = itemView.findViewById(R.id.hamsterActionButton);
     }
 
     public void bind(Hamster hamster) {

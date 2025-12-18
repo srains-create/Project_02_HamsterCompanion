@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 
 @Database(
         entities = {User.class, Hamster.class, CareLog.class},
-        version = 2,
+        version = 1,
         exportSchema = false
 )
 @TypeConverters({LocalDataTypeConverter.class})
@@ -44,6 +44,7 @@ public abstract class HamsterDatabase extends RoomDatabase {
                     super.onCreate(db);
 
                     databaseWriteExecutor.execute(() -> {
+                        //adding default users
                         UserDAO dao = INSTANCE.userDao();
 
                         User admin = new User(
@@ -58,6 +59,7 @@ public abstract class HamsterDatabase extends RoomDatabase {
                         );
                         dao.insert(admin);
                         dao.insert(user1);
+
 
                         //adding default hamsters
                         HamsterDAO hamsterDAO = INSTANCE.hamsterDao();
@@ -92,6 +94,7 @@ public abstract class HamsterDatabase extends RoomDatabase {
                         hamsterDAO.insert(h2);
                         hamsterDAO.insert(h3);
                         hamsterDAO.insert(h4);
+
                     });
                 }
             };
