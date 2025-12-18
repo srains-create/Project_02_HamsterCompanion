@@ -21,7 +21,7 @@ import com.example.project_02_hamstercompanion.database.entities.Hamster;
 public class HamsterDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_HAMSTER_ID =
-            "com.example.project_02_hamstercompanion.EXTRA_HAMSTER_ID";
+            "HAMSTER_ID";
 
     private TextView textHamsterName;
     private TextView textHungerValue;
@@ -35,11 +35,23 @@ public class HamsterDetailActivity extends AppCompatActivity {
 
     private HamsterRepository repository;
     private Hamster currentHamster;
+    private int userId;
+    private String username;
 
 
-    public static Intent intentFactory(Context context, int hamsterId) {
+//    public static Intent intentFactory(Context context, int hamsterId) {
+//        Intent intent = new Intent(context, HamsterDetailActivity.class);
+//        intent.putExtra(EXTRA_HAMSTER_ID, hamsterId);
+//        return intent;
+//    }
+    //commented out by sylvia, new intent factory needed (see below)
+    //TODO: fix the unit tests that used old intentFactory
+
+    public static Intent hamsterDetailActivityIntentFactory(Context context, int userId, String username, int hamsterId){
         Intent intent = new Intent(context, HamsterDetailActivity.class);
-        intent.putExtra(EXTRA_HAMSTER_ID, hamsterId);
+        intent.putExtra("USER_ID", userId);
+        intent.putExtra("USERNAME", username);
+        intent.putExtra("HAMSTER_ID", hamsterId);
         return intent;
     }
 
@@ -106,20 +118,14 @@ public class HamsterDetailActivity extends AppCompatActivity {
     }
 
     private void loadHamster(int hamsterId) {
-        loadHamster(hamsterId);
         LiveData<Hamster> hamsterLiveData = repository.getHamsterById(hamsterId);
-        hamsterLiveData.observe(this, new Observer<Hamster>() {
-            @Override
-            public void onChanged(Hamster hamster) {
-                if (hamster == null) {
-                    return;
+        hamsterLiveData.observe(this, h -> {
+                if (h != null) {
+                    this.currentHamster = h;
+                    updateUiFromHamster();
                 }
-
-                currentHamster = hamster;
-                updateUiFromHamster();
-
             }
-        });
+        );
     }
 
     private void updateUiFromHamster() {
@@ -234,4 +240,8 @@ public class HamsterDetailActivity extends AppCompatActivity {
 
         updateUiFromHamster();
     }
+
+
+
+
 }

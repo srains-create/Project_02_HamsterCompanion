@@ -61,6 +61,7 @@ public class HamsterAdoptionActivity extends AppCompatActivity implements Hamste
 
     }
 
+    @Override
     public void adoptHamster(Hamster hamster){
         hamster.setAdoptionDate(LocalDateTime.now());
         hamster.setUserId(loggedInUserId);

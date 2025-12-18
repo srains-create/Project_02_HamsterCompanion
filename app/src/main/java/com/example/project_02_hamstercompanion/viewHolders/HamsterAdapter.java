@@ -40,6 +40,8 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
                     listener.adoptHamster(hamster);
                 } else {
                     //open care log
+                    listener.startHamsterDetails(hamster);
+
                 }
             }
         });
@@ -59,6 +61,7 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
 
     public interface HamsterAdapterListener {
         default void adoptHamster(Hamster hamster) {};
+        default void startHamsterDetails(Hamster hamster) {};
     }
 
 
