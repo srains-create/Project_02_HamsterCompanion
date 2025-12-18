@@ -1,5 +1,7 @@
 package com.example.project_02_hamstercompanion;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.content.Intent;
 
@@ -23,9 +25,31 @@ public class HamsterHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityHamsterHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.careLogButton.setOnClickListener(v -> {
-            startActivity(new Intent(HamsterHomeActivity.this, CareLogActivity.class));
+
+        // get data from SignInActivity
+        int userId = getIntent().getIntExtra("USER_ID", -1);
+        String username = getIntent().getStringExtra("USERNAME");
+        // Show username on screen
+       // binding.usernameTextView.setText("Welcome, " + username); I commented this out bc it showed in purple screen (potential bug). -Jael
+
+        binding.careLogButton.setOnClickListener(v -> {//for Care Log button behavior -Jael
+            //           startActivity(new Intent(HamsterHomeActivity.this, CareLogActivity.class));
+            Intent intent = new Intent(HamsterHomeActivity.this, CareLogActivity.class);
+            intent.putExtra("USER_ID", userId);
+            intent.putExtra("USERNAME", username);
+            startActivity(intent);
         });
+
+        binding.backButton1.setOnClickListener(v -> {//the "back" button behavior in Care Log purple page. -Jael
+            Intent intent = new Intent(HamsterHomeActivity.this, MainActivity.class);
+            intent.putExtra("USER_ID", userId);
+            intent.putExtra("USERNAME", username);
+            startActivity(intent);
+            finish();
+        });
+
+
+
 
         repository = HamsterRepository.getRepository(getApplication());
 
@@ -41,5 +65,12 @@ public class HamsterHomeActivity extends AppCompatActivity {
 //            adapter.submitList(hamsters);
 //        });
 
+    }
+
+    public static Intent hamsterHomeIntentFactory(Context context, int userId, String username){
+        Intent intent = new Intent(context, HamsterHomeActivity.class);
+        intent.putExtra("USER_ID", userId);
+        intent.putExtra("USERNAME", username);
+        return intent;
     }
 }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#9b90d8">
 
+
     <TextView
         android:id="@+id/hamsterHomeTitle"
         android:layout_width="326dp"
@@ -17,9 +18,10 @@
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.024" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hamsterRecycler"
@@ -45,6 +47,19 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hamsterRecycler" />
+
+    <Button
+        android:id="@+id/backButton1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/adlam_display"
+        android:text="back"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/careLogButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
