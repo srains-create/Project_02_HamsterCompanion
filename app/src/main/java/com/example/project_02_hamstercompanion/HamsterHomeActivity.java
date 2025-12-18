@@ -33,19 +33,11 @@ public class HamsterHomeActivity extends AppCompatActivity {
        // binding.usernameTextView.setText("Welcome, " + username); I commented this out bc it showed in purple screen (potential bug). -Jael
 
         binding.careLogButton.setOnClickListener(v -> {//for Care Log button behavior -Jael
-            //           startActivity(new Intent(HamsterHomeActivity.this, CareLogActivity.class));
-            Intent intent = new Intent(HamsterHomeActivity.this, CareLogActivity.class);
-            intent.putExtra("USER_ID", userId);
-            intent.putExtra("USERNAME", username);
-            startActivity(intent);
+            startActivity(CareLogActivity.careLogActivityIntentFactory(getApplicationContext(),userId,username));
         });
 
         binding.backButton1.setOnClickListener(v -> {//the "back" button behavior in Care Log purple page. -Jael
-            Intent intent = new Intent(HamsterHomeActivity.this, MainActivity.class);
-            intent.putExtra("USER_ID", userId);
-            intent.putExtra("USERNAME", username);
-            startActivity(intent);
-            finish();
+            startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(),userId,username));
         });
 
 
