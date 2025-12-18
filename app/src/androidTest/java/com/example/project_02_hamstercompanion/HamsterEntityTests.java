@@ -30,7 +30,7 @@ public class HamsterEntityTests {
     // checks that a new hamster doesn't have adoption date set
     @Test
     public void adoptionDate_isNullByDefault(){
-        Hamster h = new Hamster(1,"Fluffy",10,20,30);
+        Hamster h = new Hamster(null,"Fluffy",10,20,30);
 
         assertNull(h.getAdoptionDate()); // new hamster to not have date yet
     }

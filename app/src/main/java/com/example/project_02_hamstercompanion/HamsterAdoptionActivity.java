@@ -3,6 +3,7 @@ package com.example.project_02_hamstercompanion;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -61,12 +62,14 @@ public class HamsterAdoptionActivity extends AppCompatActivity implements Hamste
 
     }
 
+    @Override
     public void adoptHamster(Hamster hamster){
         hamster.setAdoptionDate(LocalDateTime.now());
         hamster.setUserId(loggedInUserId);
         repository.updateHamster(hamster);
-
+        Toast.makeText(getApplicationContext(), "Adopted "+hamster.getName(), Toast.LENGTH_SHORT).show();
     }
+
 
     public static Intent adoptionIntentFactory(Context context, int userId, String username){
         Intent intent = new Intent(context, HamsterAdoptionActivity.class);

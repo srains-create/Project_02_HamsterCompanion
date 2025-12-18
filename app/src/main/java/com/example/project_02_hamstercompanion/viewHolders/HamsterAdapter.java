@@ -1,6 +1,5 @@
 package com.example.project_02_hamstercompanion.viewHolders;
 
-import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -8,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import com.example.project_02_hamstercompanion.database.entities.Hamster;
-import com.example.project_02_hamstercompanion.CareLogActivity;
 
 import java.time.LocalDateTime;
 
@@ -42,13 +40,7 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
                     listener.adoptHamster(hamster);
                 } else {
                     //open care log
-                    //added by KHanh Ho 12/17
-                    Intent intent = CareLogActivity.careLogActivityIntentFactory(
-                            v.getContext(),
-                            hamster.getHamsterId(),
-                            "unused"
-                    );
-                    v.getContext().startActivity(intent);
+                    listener.startHamsterDetails(hamster);
 
                 }
             }
@@ -68,7 +60,8 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
     }
 
     public interface HamsterAdapterListener {
-        public void adoptHamster(Hamster hamster);
+        default void adoptHamster(Hamster hamster) {};
+        default void startHamsterDetails(Hamster hamster) {};
     }
 
 
