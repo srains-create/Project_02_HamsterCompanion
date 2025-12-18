@@ -32,6 +32,7 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
     public void onBindViewHolder(@NonNull HamsterViewHolder holder, int position){
         Hamster hamster = getItem(position);
         holder.bind(hamster);
+
         holder.hamsterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +41,7 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
                     listener.adoptHamster(hamster);
                 } else {
                     //open care log
+                    listener.openCareLog(hamster); // adopted to Care Log
                 }
             }
         });
@@ -59,6 +61,7 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
 
     public interface HamsterAdapterListener {
         public void adoptHamster(Hamster hamster);
+        public void openCareLog(Hamster hamster);
     }
 
 
