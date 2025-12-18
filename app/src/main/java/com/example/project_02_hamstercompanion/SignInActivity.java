@@ -122,7 +122,9 @@ public class SignInActivity extends AppCompatActivity {
             switch (result) {
                 case SUCCESS:
                     ToastMaker("It's working!");
-                    startActivity(new Intent(SignInActivity.this, MainActivity.class));//Jael added
+                    //startActivity(new Intent(SignInActivity.this, MainActivity.class));//Jael added
+                    //sylvia added - the intent returned by MainActivity will have user id saved
+                    startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getUserId()));
                     finish();
                     break;
 
