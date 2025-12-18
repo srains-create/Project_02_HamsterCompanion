@@ -29,7 +29,7 @@ public class ManageUsersActivity extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.usersRecyclerView);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new UserAdapter(user -> userViewModel.deleteUser(user));//
+        adapter = new UserAdapter(user -> userViewModel.deleteUserById(user.getUserId()));//
         rv.setAdapter(adapter);
 
         userViewModel.getAllUsers().observe(this, users -> adapter.submitList(users));

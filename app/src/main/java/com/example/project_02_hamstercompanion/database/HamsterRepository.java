@@ -106,6 +106,9 @@ public class HamsterRepository {
     public void deleteUser(User user) {
         HamsterDatabase.databaseWriteExecutor.execute(() -> userDAO.delete(user));
     }
+    public void deleteUserById(int userId) {
+        HamsterDatabase.databaseWriteExecutor.execute(() -> userDAO.deleteById(userId));
+    }
 
     public LiveData<User> getUserByUserId(int userId) {
         return userDAO.getUserByUserId(userId);

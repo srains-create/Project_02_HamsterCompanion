@@ -34,4 +34,8 @@ public class UserViewModel extends AndroidViewModel {
     public void deleteUser(User user) {
         repository.deleteUser(user);
     }
+
+    public void deleteUserById(int userId) {
+        repository.deleteUserById(userId);
+    }
 }

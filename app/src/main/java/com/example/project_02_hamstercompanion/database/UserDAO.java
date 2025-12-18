@@ -35,4 +35,9 @@ public interface UserDAO {
     @Query("SELECT * FROM " + HamsterDatabase.USER_TABLE + " WHERE userName = :username AND userPassword = :password LIMIT 1")//password or userPassword? -Jael
     User getUserByCredentials(String username, String password);
 
+    @Query("DELETE FROM " + HamsterDatabase.USER_TABLE + " WHERE userId = :userId")
+    void deleteById(int userId);
+
+
+
 }
