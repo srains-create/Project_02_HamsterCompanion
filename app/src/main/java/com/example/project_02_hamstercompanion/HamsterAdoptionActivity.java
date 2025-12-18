@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_02_hamstercompanion.database.HamsterRepository;
+import com.example.project_02_hamstercompanion.database.entities.Hamster;
 import com.example.project_02_hamstercompanion.databinding.ActivityHamsterAdoptionBinding;
 import com.example.project_02_hamstercompanion.viewHolders.HamsterAdapter;
 import com.example.project_02_hamstercompanion.viewHolders.HamsterViewModel;
 
-public class HamsterAdoptionActivity extends AppCompatActivity {
+public class HamsterAdoptionActivity extends AppCompatActivity implements HamsterAdapter.HamsterAdapterListener {
 
     private ActivityHamsterAdoptionBinding binding;
     private HamsterRepository repository;
@@ -53,6 +54,11 @@ public class HamsterAdoptionActivity extends AppCompatActivity {
             adapter.submitList(hamsters);
         });
 
+    }
+
+    public void adoptHamster(Hamster hamster){
+        int hamsterId = hamster.getHamsterId();
+       //TODO: code to adopt that hamster
     }
 
     public static Intent adoptionIntentFactory(Context context, int userId, String username){

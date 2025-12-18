@@ -15,7 +15,8 @@ import com.example.project_02_hamstercompanion.database.entities.Hamster;
 
 public class HamsterViewHolder extends RecyclerView.ViewHolder {
     private final TextView hamsterName, hamsterHunger, hamsterEnergy, hamsterCleanliness;
-    private final Button hamsterButton;
+    final Button hamsterButton;
+    //TODO: need a referece to listener interface
 
     private HamsterViewHolder(View hamsterView) {
         super(hamsterView);
