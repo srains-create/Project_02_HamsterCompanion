@@ -14,8 +14,6 @@ import com.example.project_02_hamstercompanion.database.entities.Hamster;
 public class HamsterViewHolder extends RecyclerView.ViewHolder {
     private final TextView hamsterName, hamsterHunger, hamsterEnergy, hamsterCleanliness;
     private final Button hamsterButton;
-    private static final int HAMSTER_HOME = 1;
-    private static final int ADOPTION_CENTER = 2;
 
     private HamsterViewHolder(View hamsterView) {
         super(hamsterView);
@@ -28,23 +26,22 @@ public class HamsterViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Hamster hamster) {
-        hamsterName.setText(hamster.getName());
-        hamsterHunger.setText(hamster.getHunger());
-        hamsterEnergy.setText(hamster.getEnergy());
-        hamsterCleanliness.setText(hamster.getCleanliness());
+        hamsterName.setText(String.valueOf(hamster.getName()));
+        hamsterHunger.setText(String.valueOf(hamster.getHunger()));
+        hamsterEnergy.setText(String.valueOf(hamster.getEnergy()));
+        hamsterCleanliness.setText(String.valueOf(hamster.getCleanliness()));
         if (hamster.getAdoptionDate() != null) {
             //not null adoption date = its in hamster home
-            hamsterButton.setText(HAMSTER_HOME);
+            hamsterButton.setText("Care");
         } else {
-            hamsterButton.setText(ADOPTION_CENTER);
+            hamsterButton.setText("Adopt");
         }
     }
 
-    public
-
     static HamsterViewHolder create(ViewGroup parent){
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_hamster_home, parent, false);
+                .inflate(R.layout.item_hamster,
+                        parent, false);
         return new HamsterViewHolder(view);
     }
 }
