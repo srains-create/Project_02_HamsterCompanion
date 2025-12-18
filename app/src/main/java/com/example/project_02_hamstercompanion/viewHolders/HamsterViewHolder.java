@@ -27,23 +27,17 @@ public class HamsterViewHolder extends RecyclerView.ViewHolder {
         hamsterButton = hamsterView.findViewById(R.id.hamsterActionButton);
     }
 
-    public void setButtonType(int buttonType) {
-        //change color too? (not implemented yet)
-        switch (buttonType) {
-            case HAMSTER_HOME:
-                hamsterButton.setText(HAMSTER_HOME);
-                break;
-            case ADOPTION_CENTER:
-                hamsterButton.setText(ADOPTION_CENTER);
-                break;
-        }
-    }
-
     public void bind(Hamster hamster) {
         hamsterName.setText(hamster.getName());
         hamsterHunger.setText(hamster.getHunger());
         hamsterEnergy.setText(hamster.getEnergy());
         hamsterCleanliness.setText(hamster.getCleanliness());
+        if (hamster.getAdoptionDate() != null) {
+            //not null adoption date = its in hamster home
+            hamsterButton.setText(HAMSTER_HOME);
+        } else {
+            hamsterButton.setText(ADOPTION_CENTER);
+        }
     }
 
     public
