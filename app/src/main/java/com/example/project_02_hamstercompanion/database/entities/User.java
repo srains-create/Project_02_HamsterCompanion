@@ -63,10 +63,6 @@ public User(String userName, String userPassword, boolean isAdmin){
     public boolean isAdmin() {
         return isAdmin;
     }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
 }
 
 
