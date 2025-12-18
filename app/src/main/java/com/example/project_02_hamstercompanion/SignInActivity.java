@@ -123,6 +123,11 @@ public class SignInActivity extends AppCompatActivity {
 
             switch (result) {
                 case SUCCESS: {
+                    //To block admins from using regular Sign In button
+                    if (user != null && user.isAdmin()) {
+                        ToastMaker("Admin must sign in using the admin button");
+                        break;
+                    }
                     // startActivity
                     Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(),
