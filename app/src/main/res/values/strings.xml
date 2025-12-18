@@ -35,5 +35,7 @@
     <string name="adoption_center_title">Adoption Center</string>
     <string name="hamster_ncare_log">Hamster \nCare Log</string>
     <string name="manage_hamsters">Manage Hamsters</string>
+    <string name="back">Back</string>
+
 
 </resources>

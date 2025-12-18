@@ -121,4 +121,20 @@
     app:layout_constraintEnd_toEndOf="parent"
     android:layout_marginTop="12dp" />
 
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:fontFamily="@font/adlam_display"
+        android:textSize="18sp"
+        android:textColor="#D285b5"
+        app:backgroundTint="#E9E7CC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.95" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

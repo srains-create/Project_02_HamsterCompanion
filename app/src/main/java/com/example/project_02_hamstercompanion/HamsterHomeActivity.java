@@ -3,7 +3,6 @@ package com.example.project_02_hamstercompanion;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -11,11 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_02_hamstercompanion.database.HamsterRepository;
+import com.example.project_02_hamstercompanion.database.entities.Hamster;
 import com.example.project_02_hamstercompanion.databinding.ActivityHamsterHomeBinding;
 import com.example.project_02_hamstercompanion.viewHolders.HamsterAdapter;
 import com.example.project_02_hamstercompanion.viewHolders.HamsterViewModel;
 
-public class HamsterHomeActivity extends AppCompatActivity {
+public class HamsterHomeActivity extends AppCompatActivity implements HamsterAdapter.HamsterAdapterListener {
     private ActivityHamsterHomeBinding binding;
     private HamsterRepository repository;
     private HamsterViewModel hamsterViewModel;
@@ -33,19 +33,11 @@ public class HamsterHomeActivity extends AppCompatActivity {
        // binding.usernameTextView.setText("Welcome, " + username); I commented this out bc it showed in purple screen (potential bug). -Jael
 
         binding.careLogButton.setOnClickListener(v -> {//for Care Log button behavior -Jael
-            //           startActivity(new Intent(HamsterHomeActivity.this, CareLogActivity.class));
-            Intent intent = new Intent(HamsterHomeActivity.this, CareLogActivity.class);
-            intent.putExtra("USER_ID", userId);
-            intent.putExtra("USERNAME", username);
-            startActivity(intent);
+            startActivity(CareLogActivity.careLogActivityIntentFactory(getApplicationContext(),userId,username));
         });
 
         binding.backButton1.setOnClickListener(v -> {//the "back" button behavior in Care Log purple page. -Jael
-            Intent intent = new Intent(HamsterHomeActivity.this, MainActivity.class);
-            intent.putExtra("USER_ID", userId);
-            intent.putExtra("USERNAME", username);
-            startActivity(intent);
-            finish();
+            startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(),userId,username));
         });
 
 
@@ -53,17 +45,17 @@ public class HamsterHomeActivity extends AppCompatActivity {
 
         repository = HamsterRepository.getRepository(getApplication());
 
+        //setting up recycler
         hamsterViewModel = new ViewModelProvider(this).get(HamsterViewModel.class);
         RecyclerView recyclerView = binding.hamsterRecycler;
         final HamsterAdapter adapter = new HamsterAdapter(new HamsterAdapter.HamsterDiff(),
-                HamsterAdapter.HAMSTER_HOME);
+               this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //TODO: replace "userId" with user id once login is implemented
-//        hamsterViewModel.getHamstersOfUser(userId).observe(this, hamsters -> {
-//            adapter.submitList(hamsters);
-//        });
+        hamsterViewModel.getHamstersOfUser(userId).observe(this, hamsters -> {
+            adapter.submitList(hamsters);
+        });
 
     }
 
@@ -73,4 +65,18 @@ public class HamsterHomeActivity extends AppCompatActivity {
         intent.putExtra("USERNAME", username);
         return intent;
     }
+
+    @Override
+    public void adoptHamster(Hamster hamster) {
+        if (hamster == null) {
+            return;
+        }
+
+        Intent intent = HamsterDetailActivity.intentFactory(
+                HamsterHomeActivity.this,
+                hamster.getHamsterId()
+        );
+        startActivity(intent);
+    }
+
 }

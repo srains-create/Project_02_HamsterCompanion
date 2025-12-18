@@ -14,6 +14,8 @@ import com.example.project_02_hamstercompanion.database.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.RecursiveAction;
+
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
     public interface OnDeleteClick {
         void onDelete(User user);
@@ -46,7 +48,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
         holder.usernameTv.setText(u.getUserName());
         holder.roleTv.setText(u.isAdmin() ? "ADMIN" : "USER");
 
-        //to add
+        holder.deleteBtn.setOnClickListener(v -> {
+            int pos = holder.getBindingAdapterPosition();
+            if (pos != RecyclerView.NO_POSITION) {
+                onDeleteClick.onDelete(users.get(pos));
+            }
+        });
     }
 
     @Override

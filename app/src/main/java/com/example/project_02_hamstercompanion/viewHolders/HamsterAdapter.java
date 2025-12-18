@@ -1,36 +1,58 @@
 package com.example.project_02_hamstercompanion.viewHolders;
 
+import android.content.Intent;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import com.example.project_02_hamstercompanion.database.entities.Hamster;
+import com.example.project_02_hamstercompanion.CareLogActivity;
+
+import java.time.LocalDateTime;
 
 public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
 
-    private final int buttonType;
+    HamsterAdapterListener listener;
     public static final int HAMSTER_HOME = 1;
-    public static final int ADOPTION_CENTER = 2;
 
 
-    public HamsterAdapter(@NonNull DiffUtil.ItemCallback<Hamster> diffCallback, int buttonType){
+
+    public HamsterAdapter(@NonNull DiffUtil.ItemCallback<Hamster> diffCallback, HamsterAdapterListener listener){
         super(diffCallback);
-        this.buttonType = buttonType;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public HamsterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        HamsterViewHolder holder = HamsterViewHolder.create(parent);
-        holder.setButtonType(buttonType);
-        return holder;
+        return HamsterViewHolder.create(parent);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HamsterViewHolder holder, int position){
         Hamster hamster = getItem(position);
         holder.bind(hamster);
+        holder.hamsterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (hamster.getAdoptionDate() == null) {
+                    //tell activity to change hamster
+                    listener.adoptHamster(hamster);
+                } else {
+                    //open care log
+                    //added by KHanh Ho 12/17
+                    Intent intent = CareLogActivity.careLogActivityIntentFactory(
+                            v.getContext(),
+                            hamster.getHamsterId(),
+                            "unused"
+                    );
+                    v.getContext().startActivity(intent);
+
+                }
+            }
+        });
     }
 
     public static class HamsterDiff extends DiffUtil.ItemCallback<Hamster>{
@@ -43,6 +65,10 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
         public boolean areContentsTheSame(@NonNull Hamster oldHamster, @NonNull Hamster newHamster) {
             return oldHamster.equals(newHamster);
         }
+    }
+
+    public interface HamsterAdapterListener {
+        public void adoptHamster(Hamster hamster);
     }
 
 

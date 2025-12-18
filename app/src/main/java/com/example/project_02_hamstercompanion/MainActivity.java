@@ -1,5 +1,6 @@
 package com.example.project_02_hamstercompanion;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -53,5 +54,23 @@ public class MainActivity extends AppCompatActivity {
             );
             startActivity(intent);
         });
+
+        // manage hamsters button
+        binding.settings.setOnClickListener(v -> {
+            Intent intent = HamsterHomeActivity.hamsterHomeIntentFactory(
+                    MainActivity.this,
+                    userId,
+                    username
+            );
+            startActivity(intent);
+        });
+
     }
+    static Intent mainActivityIntentFactory(Context context, int userId, String username) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra("USER_ID", userId);
+        intent.putExtra("USERNAME", username);
+        return intent;
+    }
+
 }

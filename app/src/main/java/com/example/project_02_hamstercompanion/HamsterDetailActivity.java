@@ -32,6 +32,8 @@ public class HamsterDetailActivity extends AppCompatActivity {
     private Button buttonClean;
     private Button buttonPlay;
     private Button buttonRest;
+    private Button buttonBack;
+
 
     private HamsterRepository repository;
     private Hamster currentHamster;
@@ -72,6 +74,7 @@ public class HamsterDetailActivity extends AppCompatActivity {
         buttonClean = findViewById(R.id.buttonClean);
         buttonPlay = findViewById(R.id.buttonPlay);
         buttonRest = findViewById(R.id.buttonRest);
+        buttonBack = findViewById(R.id.buttonBack);
     }
 
     private void setupButtonListeners() {
@@ -100,6 +103,13 @@ public class HamsterDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 handleRest();
+            }
+        });
+
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
