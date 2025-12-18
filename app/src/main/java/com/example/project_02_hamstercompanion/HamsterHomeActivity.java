@@ -67,7 +67,5 @@ public class HamsterHomeActivity extends AppCompatActivity implements HamsterAda
         return intent;
     }
 
-    public void adoptHamster(Hamster hamster) {
-        return;
-    }
+
 }

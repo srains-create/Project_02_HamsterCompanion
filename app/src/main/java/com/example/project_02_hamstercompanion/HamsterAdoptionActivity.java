@@ -65,7 +65,6 @@ public class HamsterAdoptionActivity extends AppCompatActivity implements Hamste
         hamster.setAdoptionDate(LocalDateTime.now());
         hamster.setUserId(loggedInUserId);
         repository.updateHamster(hamster);
-
     }
 
     public static Intent adoptionIntentFactory(Context context, int userId, String username){

@@ -58,7 +58,7 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
     }
 
     public interface HamsterAdapterListener {
-        public void adoptHamster(Hamster hamster);
+        default void adoptHamster(Hamster hamster) {};
     }
 
 
