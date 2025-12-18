@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 
 @Database(
         entities = {User.class, Hamster.class, CareLog.class},
-        version = 2,
+        version = 1,
         exportSchema = false
 )
 @TypeConverters({LocalDataTypeConverter.class})

@@ -1,5 +1,7 @@
 package com.example.project_02_hamstercompanion;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -28,4 +30,13 @@ public class CareLogActivity extends AppCompatActivity {
         CareLogViewModel viewModel = new ViewModelProvider(this).get(CareLogViewModel.class);
         viewModel.getAllLogs().observe(this, adapter::setCareLogs);
     }
+
+
+    static Intent careLogActivityIntentFactory(Context context, int userId, String username) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra("USER_ID", userId);
+        intent.putExtra("USERNAME", username);
+        return intent;
+    }
+
 }

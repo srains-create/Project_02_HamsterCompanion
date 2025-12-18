@@ -1,5 +1,7 @@
 package com.example.project_02_hamstercompanion.viewHolders;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +16,8 @@ import com.example.project_02_hamstercompanion.database.entities.Hamster;
 
 public class HamsterViewHolder extends RecyclerView.ViewHolder {
     private final TextView hamsterName, hamsterHunger, hamsterEnergy, hamsterCleanliness;
-    private final Button hamsterButton;
-    private static final int HAMSTER_HOME = 1;
-    private static final int ADOPTION_CENTER = 2;
+    final Button hamsterButton;
+    //TODO: need a referece to listener interface
 
     private HamsterViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -28,28 +29,25 @@ public class HamsterViewHolder extends RecyclerView.ViewHolder {
         hamsterButton = itemView.findViewById(R.id.hamsterActionButton);
     }
 
-    public void setButtonType(int buttonType) {
-        //change color too? (not implemented yet)
-        switch (buttonType) {
-            case HAMSTER_HOME:
-                hamsterButton.setText("View");//HAMSTER_HOME
-                break;
-            case ADOPTION_CENTER:
-                hamsterButton.setText("Adopt");//ADOPTION_CENTER
-                break;
-        }
-    }
-
     public void bind(Hamster hamster) {
-        hamsterName.setText(hamster.getName());
+        hamsterName.setText(String.valueOf(hamster.getName()));
         hamsterHunger.setText(String.valueOf(hamster.getHunger()));
         hamsterEnergy.setText(String.valueOf(hamster.getEnergy()));
         hamsterCleanliness.setText(String.valueOf(hamster.getCleanliness()));
+        if (hamster.getAdoptionDate() != null) {
+            //not null adoption date = its in hamster home
+            hamsterButton.setText("Care");
+            hamsterButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#67568F")));
+        } else {
+            hamsterButton.setText("Adopt");
+            hamsterButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#71945D")));
+        }
     }
 
-    public static HamsterViewHolder create(ViewGroup parent){
+    static HamsterViewHolder create(ViewGroup parent){
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_hamster, parent, false);//activity_hamster_home
+                .inflate(R.layout.item_hamster,
+                        parent, false);
         return new HamsterViewHolder(view);
     }
 }
