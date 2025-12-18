@@ -39,6 +39,8 @@
 
         <activity android:name=".HamsterDetailActivity" />
         <activity android:name=".AdminActivity"/>
+        <activity android:name=".ManageUsersActivity" />
+
 
         <meta-data
             android:name="preloaded_fonts"
