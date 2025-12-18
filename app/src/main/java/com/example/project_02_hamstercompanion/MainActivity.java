@@ -38,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        binding.signOutButton2.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        });
+
         //adoption center button
         binding.adoptionCenterButton.setOnClickListener(v -> {
             Intent intent = HamsterAdoptionActivity.adoptionIntentFactory(

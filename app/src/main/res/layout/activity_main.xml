@@ -78,4 +78,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adoptionCenterButton" />
 
+    <Button
+        android:id="@+id/signOutButton2"
+        android:layout_width="118dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/adlam_display"
+        android:gravity="center"
+        android:text="Sign Out"
+        android:textColor="#D9EDED"
+        android:textSize="16sp"
+        app:backgroundTint="#96539D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings"
+        app:layout_constraintVertical_bias="0.437" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
