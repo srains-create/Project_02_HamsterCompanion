@@ -24,18 +24,17 @@ public class Hamster {
     private LocalDateTime adoptionDate;
 
     public Hamster(Integer userId, String name, int hunger, int cleanliness, int energy) {
-        if(userId != null) {
-            //not null user id -> owned hamster
-            //owned hamster needs owner and adoption date
-            this.userId = userId;
-            this.adoptionDate = LocalDateTime.now();
-        }
+        //null userId = no owner
+        this.userId = userId;
         this.name = name;
         this.hunger = hunger;
         this.cleanliness = cleanliness;
         this.energy = energy;
+        //null adoptionDate = not adopted
+        if (userId != null) {
+            this.adoptionDate = LocalDateTime.now();
+        }
     }
-
 
     @NonNull
     @Override
