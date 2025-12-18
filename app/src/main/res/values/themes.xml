@@ -3,6 +3,7 @@
     <style name="Base.Theme.Project_02_HamsterCompanion" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:fontFamily">@font/adlam_display</item>
     </style>
 
     <style name="Theme.Project_02_HamsterCompanion" parent="Base.Theme.Project_02_HamsterCompanion" />
