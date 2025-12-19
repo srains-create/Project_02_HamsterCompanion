@@ -43,6 +43,8 @@ public class HamsterDetailActivity extends AppCompatActivity {
 
     private HamsterRepository repository;
     private Hamster currentHamster;
+    private int userId;
+    private String username;
 
     private @NonNull ActivityHamsterDetailBinding binding;
     private CareLogViewModel careLogViewModel;
@@ -147,18 +149,13 @@ public class HamsterDetailActivity extends AppCompatActivity {
     private void loadHamster(int hamsterId) {
     //    loadHamster(hamsterId);
         LiveData<Hamster> hamsterLiveData = repository.getHamsterById(hamsterId);
-        hamsterLiveData.observe(this, new Observer<Hamster>() {
-            @Override
-            public void onChanged(Hamster hamster) {
-                if (hamster == null) {
-                    return;
+        hamsterLiveData.observe(this, h -> {
+                if (h != null) {
+                    this.currentHamster = h;
+                    updateUiFromHamster();
                 }
-
-                currentHamster = hamster;
-                updateUiFromHamster();
-
             }
-        });
+        );
     }
 
     private void updateUiFromHamster() {

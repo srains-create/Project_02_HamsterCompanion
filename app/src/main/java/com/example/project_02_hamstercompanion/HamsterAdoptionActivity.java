@@ -72,7 +72,7 @@ public class HamsterAdoptionActivity extends AppCompatActivity
         hamster.setAdoptionDate(LocalDateTime.now());
         hamster.setUserId(loggedInUserId);
         repository.updateHamster(hamster);
-
+        Toast.makeText(getApplicationContext(), "Adopted "+hamster.getName(), Toast.LENGTH_SHORT).show();
     }
     public static Intent adoptionIntentFactory(Context context, int userId, String username){
         Intent intent = new Intent(context, HamsterAdoptionActivity.class);
