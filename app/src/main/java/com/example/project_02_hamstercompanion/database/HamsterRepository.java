@@ -85,6 +85,18 @@ public class HamsterRepository {
         });
     }
 
+    public void insertHamster(Hamster hamster) {
+        HamsterDatabase.databaseWriteExecutor.execute(() -> {
+            hamsterDAO.insert(hamster);
+        });
+    }
+
+//    public void deleteHamster(Hamster hamster) {
+//        HamsterDatabase.databaseWriteExecutor.execute(() -> {
+//            hamsterDAO.delete(hamster);
+//        });
+//    }
+
     public void insertCareLog(CareLog log) {
         HamsterDatabase.databaseWriteExecutor.execute(() -> {
             careLogDao.insert(log);

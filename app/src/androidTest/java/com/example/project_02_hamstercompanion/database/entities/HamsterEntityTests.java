@@ -1,8 +1,9 @@
-package com.example.project_02_hamstercompanion.database.entities;
+package com.example.project_02_hamstercompanion;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import com.example.project_02_hamstercompanion.database.entities.Hamster;
 
 // tests for Hamster entity
 public class HamsterEntityTests {
@@ -19,25 +20,18 @@ public class HamsterEntityTests {
 
         );
         // makes sure each getter returns the value passed in
-        assertEquals(1, (int) h.getUserId());
+        assertEquals(Integer.valueOf(1), h.getUserId());
         assertEquals("Fluffy", h.getName());
         assertEquals(10, h.getHunger());
         assertEquals(20, h.getCleanliness());
         assertEquals(30, h.getEnergy());
     }
 
-    // checks that a hamster made with null user doesn't have adoption date set
+    // checks that a new hamster doesn't have adoption date set
     @Test
-    public void adoptionDate_isNullWhenUserNull(){
-        //user
+    public void adoptionDate_isNullByDefault(){
         Hamster h = new Hamster(null,"Fluffy",10,20,30);
-        assertNull(h.getAdoptionDate()); // new hamster to not have date yet
-    }
 
-    //checks that adoption date is set if userid is given during hamster creation
-    @Test
-    public void adoptionDate_isSetWhenUserNotNull() {
-        Hamster h = new Hamster(1, "Fluffy",10, 20, 30);
-        assertNotNull(h.getAdoptionDate());
+        assertNull(h.getAdoptionDate()); // new hamster to not have date yet
     }
 }

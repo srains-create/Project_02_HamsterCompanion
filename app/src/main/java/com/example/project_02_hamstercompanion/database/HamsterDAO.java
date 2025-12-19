@@ -3,6 +3,7 @@ package com.example.project_02_hamstercompanion.database;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.Delete;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
