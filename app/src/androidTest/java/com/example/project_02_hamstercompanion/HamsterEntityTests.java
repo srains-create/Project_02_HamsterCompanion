@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 
 import com.example.project_02_hamstercompanion.database.entities.Hamster;
 
+import java.util.Optional;
+
 // tests for Hamster entity
 public class HamsterEntityTests {
 
@@ -20,7 +22,7 @@ public class HamsterEntityTests {
 
         );
         // makes sure each getter returns the value passed in
-        assertEquals(1, h.getUserId());
+        assertEquals(Optional.of(1), h.getUserId());
         assertEquals("Fluffy", h.getName());
         assertEquals(10, h.getHunger());
         assertEquals(20, h.getCleanliness());
