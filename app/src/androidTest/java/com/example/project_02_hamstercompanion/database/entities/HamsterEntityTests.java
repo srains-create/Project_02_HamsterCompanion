@@ -3,6 +3,7 @@ package com.example.project_02_hamstercompanion.database.entities;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+
 // tests for Hamster entity
 public class HamsterEntityTests {
 

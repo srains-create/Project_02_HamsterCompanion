@@ -62,6 +62,7 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
     public interface HamsterAdapterListener {
         default void adoptHamster(Hamster hamster) {};
         default void startHamsterDetails(Hamster hamster) {};
+        default void openCareLog(Hamster hamster){};
     }
 
 

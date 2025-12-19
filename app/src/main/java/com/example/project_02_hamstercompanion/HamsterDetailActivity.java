@@ -120,11 +120,11 @@ public class HamsterDetailActivity extends AppCompatActivity {
     private void loadHamster(int hamsterId) {
         LiveData<Hamster> hamsterLiveData = repository.getHamsterById(hamsterId);
         hamsterLiveData.observe(this, h -> {
-                if (h != null) {
-                    this.currentHamster = h;
-                    updateUiFromHamster();
+                    if (h != null) {
+                        this.currentHamster = h;
+                        updateUiFromHamster();
+                    }
                 }
-            }
         );
     }
 
