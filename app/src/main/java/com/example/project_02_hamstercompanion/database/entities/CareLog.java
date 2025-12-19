@@ -39,6 +39,9 @@ public class CareLog {
         this.notes = notes;
     }
 
+    public CareLog(int hamsterId, int hunger, int cleanliness, int energy) {
+    }
+
     public int getId() {
         return id;
     }
