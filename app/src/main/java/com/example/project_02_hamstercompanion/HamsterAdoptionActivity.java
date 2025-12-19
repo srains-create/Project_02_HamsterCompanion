@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -92,11 +93,4 @@ public class HamsterAdoptionActivity extends AppCompatActivity
         );
         startActivity(intent);
     }
-
-    @Override
-    public void onHamsterClick(Hamster hamster) {
-        return;
-    }
-
-
 }

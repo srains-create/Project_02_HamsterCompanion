@@ -12,16 +12,9 @@ import java.time.LocalDateTime;
 
 public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
 
-    private final HamsterAdapterListener listener;
-
+    HamsterAdapterListener listener;
     public static final int HAMSTER_HOME = 1;
 
-
-    public interface HamsterAdapterListener {
-        void adoptHamster(Hamster hamster);
-        void openCareLog(Hamster hamster);
-        void onHamsterClick(Hamster hamster);
-    }
 
 
     public HamsterAdapter(@NonNull DiffUtil.ItemCallback<Hamster> diffCallback, HamsterAdapterListener listener){
@@ -39,32 +32,18 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
     public void onBindViewHolder(@NonNull HamsterViewHolder holder, int position){
         Hamster hamster = getItem(position);
         holder.bind(hamster);
-
-        holder.itemView.setOnClickListener(v->{
-            if (listener != null){
-                listener.onHamsterClick(hamster);
-            }
-        });
-
-//        holder.hamsterButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-        holder.hamsterButton.setOnClickListener(v -> {
-            if(listener != null) {
-                listener.onHamsterClick(hamster);
-            }
-        });
-
-        holder.hamsterButton.setOnClickListener(v -> {
-            if (listener == null) return;
-            if (hamster.getAdoptionDate() == null) {
-//                    //tell activity to change hamster
-                    listener.adoptHamster(hamster); //adopt it
+        holder.hamsterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (hamster.getAdoptionDate() == null) {
+                    //tell activity to change hamster
+                    listener.adoptHamster(hamster);
                 } else {
                     //open care log
-                    listener.openCareLog(hamster); // already adopted -> opens Care Log
-                }
+                    listener.startHamsterDetails(hamster);
 
+                }
+            }
         });
     }
 
@@ -78,6 +57,12 @@ public class HamsterAdapter extends ListAdapter<Hamster, HamsterViewHolder> {
         public boolean areContentsTheSame(@NonNull Hamster oldHamster, @NonNull Hamster newHamster) {
             return oldHamster.equals(newHamster);
         }
+    }
+
+    public interface HamsterAdapterListener {
+        default void adoptHamster(Hamster hamster) {};
+        default void startHamsterDetails(Hamster hamster) {};
+        default void openCareLog(Hamster hamster){};
     }
 
 
