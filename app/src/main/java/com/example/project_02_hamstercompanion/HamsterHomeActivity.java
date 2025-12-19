@@ -20,16 +20,18 @@ public class HamsterHomeActivity extends AppCompatActivity implements HamsterAda
     private ActivityHamsterHomeBinding binding;
     private HamsterRepository repository;
     private HamsterViewModel hamsterViewModel;
+    private int userId;
+    private String username;
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityHamsterHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // get data from SignInActivity
-        int userId = getIntent().getIntExtra("USER_ID", -1);
-        String username = getIntent().getStringExtra("USERNAME");
+        userId = getIntent().getIntExtra("USER_ID", -1);
+        username = getIntent().getStringExtra("USERNAME");
         // Show username on screen
        // binding.usernameTextView.setText("Welcome, " + username); I commented this out bc it showed in purple screen (potential bug). -Jael
 
@@ -49,15 +51,15 @@ public class HamsterHomeActivity extends AppCompatActivity implements HamsterAda
         //setting up recycler
         hamsterViewModel = new ViewModelProvider(this).get(HamsterViewModel.class);
         RecyclerView recyclerView = binding.hamsterRecycler;
-        final HamsterAdapter adapter = new HamsterAdapter(new HamsterAdapter.HamsterDiff(),
-               this);
+        final HamsterAdapter adapter = new HamsterAdapter(
+                new HamsterAdapter.HamsterDiff(),
+                this
+        );
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        hamsterViewModel.getHamstersOfUser(userId).observe(this, hamsters -> {
-            adapter.submitList(hamsters);
-        });
 
+        hamsterViewModel.getHamstersOfUser(userId).observe(this, adapter::submitList);
     }
 
     public static Intent hamsterHomeIntentFactory(Context context, int userId, String username){
@@ -67,7 +69,32 @@ public class HamsterHomeActivity extends AppCompatActivity implements HamsterAda
         return intent;
     }
 
+    @Override
     public void adoptHamster(Hamster hamster) {
         return;
     }
+
+    public void openCareLog(Hamster hamster){
+
+        Intent intent = CareLogActivity.careLogActivityIntentFactory(
+                this,
+                hamster.getHamsterId(),
+                username
+
+        );
+        startActivity(intent);
+    }
+
+    @Override
+    public void onHamsterClick(Hamster hamster){
+        Intent intent = HamsterDetailActivity.intentFactory(
+                this,
+                hamster.getHamsterId(),
+                userId,
+                username
+        );
+        startActivity(intent);
+    }
+
 }
+
