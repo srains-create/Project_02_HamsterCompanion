@@ -97,9 +97,9 @@ public class HamsterRepository {
 //        });
 //    }
 
-    public void insertCareLog(CareLog careLog) {
+    public void insertCareLog(CareLog log) {
         HamsterDatabase.databaseWriteExecutor.execute(() -> {
-            careLogDao.insert(careLog);
+            careLogDao.insert(log);
         });
     }
     public LiveData<List<CareLog>> getLogsForHamster(int hamsterId) {

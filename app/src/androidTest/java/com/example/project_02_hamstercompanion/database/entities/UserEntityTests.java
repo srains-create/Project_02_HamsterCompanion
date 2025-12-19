@@ -1,8 +1,6 @@
-package com.example.project_02_hamstercompanion;
+package com.example.project_02_hamstercompanion.database.entities;
 
 import static org.junit.Assert.assertEquals;
-
-import com.example.project_02_hamstercompanion.database.entities.User;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

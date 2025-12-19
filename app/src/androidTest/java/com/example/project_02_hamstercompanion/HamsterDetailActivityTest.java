@@ -30,34 +30,27 @@ public class HamsterDetailActivityTest {
     }
 
     @Test
-    public void intentFactory_putsCorrectHamsterId() {
-        int expectedId = 42;
+    public void intentFactory_putsCorrectIds() {
         int userId = 1;
-        String username = "tester";
-
+        String username = "testuser";
+        int hamsterId = 42;
         Intent intent = HamsterDetailActivity.hamsterDetailActivityIntentFactory(
-                context,
-                userId,
-                username,
-                expectedId
-        );
-
-        int actualId = intent.getIntExtra(HamsterDetailActivity.EXTRA_HAMSTER_ID, -1);
-        assertEquals(expectedId, actualId);
+                context, 1, "testuser", hamsterId);
+        int actualHamsterId = intent.getIntExtra(HamsterDetailActivity.EXTRA_HAMSTER_ID, -1);
+        int actualUserId = intent.getIntExtra("USER_ID", -1);
+        String actualUsername = intent.getStringExtra("USERNAME");
+        assertEquals(hamsterId, actualHamsterId);
+        assertEquals(username, actualUsername);
+        assertEquals(userId, actualUserId);
     }
 
     @Test
     public void intentFactory_usesHamsterDetailActivityComponent() {
         int hamsterId = 7;
-        int userId = 2;
-        String username = "anotherTester";
-
+        int userId = 1;
+        String username = "username";
         Intent intent = HamsterDetailActivity.hamsterDetailActivityIntentFactory(
-                context,
-                userId,
-                username,
-                hamsterId
-        );
+                context, userId, username, hamsterId);
 
         assertNotNull(intent.getComponent());
         assertEquals(

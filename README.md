@@ -16,10 +16,10 @@ Android App
 HamsterCompanion is a small Android app where the user has a virtual hamster pet.
 In this app, the user can:
 Create an account and log in.
-Adopt a hamster and give it a name.
+Adopt a hamster.
 Feed the hamster.
 Clean the hamster’s cage.
 Play with the hamster.
 Let the hamster rest/sleep.
-See simple numbers for hunger, cleanliness, and energy.
+See stats for hunger, cleanliness, and energy.
 See a list of past actions (feed, clean, play, rest).

@@ -33,7 +33,7 @@ public class HamsterHomeActivity extends AppCompatActivity implements HamsterAda
         this.userId = getIntent().getIntExtra("USER_ID", -1);
         this.username = getIntent().getStringExtra("USERNAME");
         // Show username on screen
-       // binding.usernameTextView.setText("Welcome, " + username); I commented this out bc it showed in purple screen (potential bug). -Jael
+        // binding.usernameTextView.setText("Welcome, " + username); I commented this out bc it showed in purple screen (potential bug). -Jael
 
         binding.careLogButton.setOnClickListener(v -> {//for Care Log button behavior -Jael
             startActivity(CareLogActivity.careLogActivityIntentFactory(getApplicationContext(),userId,username));
@@ -49,7 +49,7 @@ public class HamsterHomeActivity extends AppCompatActivity implements HamsterAda
         hamsterViewModel = new ViewModelProvider(this).get(HamsterViewModel.class);
         RecyclerView recyclerView = binding.hamsterRecycler;
         final HamsterAdapter adapter = new HamsterAdapter(new HamsterAdapter.HamsterDiff(),
-               this);
+                this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

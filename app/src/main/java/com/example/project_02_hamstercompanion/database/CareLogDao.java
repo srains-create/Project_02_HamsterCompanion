@@ -16,11 +16,13 @@ public interface CareLogDao {
     void insert(CareLog careLog);
 
     // Get all care log entries for one hamster, newest first.
-    @Query("SELECT * FROM " + HamsterDatabase.CARE_LOG_TABLE + " WHERE hamster_id = :hamsterId ORDER BY timestamp DESC")
+    @Query("SELECT * FROM " + HamsterDatabase.CARE_LOG_TABLE +
+            " WHERE hamster_id = :hamsterId ORDER BY timestamp DESC")
     List<CareLog> getLogsForHamster(int hamsterId);
 
     //added a extra method to return LiveData for UI -Jael
-    @Query("SELECT * FROM " + HamsterDatabase.CARE_LOG_TABLE + " WHERE hamster_id = :hamsterId ORDER BY timestamp DESC")
+    @Query("SELECT * FROM " + HamsterDatabase.CARE_LOG_TABLE +
+            " WHERE hamster_id = :hamsterId ORDER BY timestamp DESC")
     LiveData<List<CareLog>> getLogsForHamsterLiveData (int hamsterId);
 
     @Query("SELECT * FROM " + HamsterDatabase.CARE_LOG_TABLE)
