@@ -129,7 +129,6 @@ public class SignInActivity extends AppCompatActivity {
                         break;
                     }
                     // startActivity
-                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(),
                             user.getUserId(), user.getUserName()));
                     finish();

@@ -43,9 +43,6 @@ public class HamsterHomeActivity extends AppCompatActivity implements HamsterAda
             startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(),userId,username));
         });
 
-
-
-
         repository = HamsterRepository.getRepository(getApplication());
 
         //setting up recycler
@@ -60,6 +57,14 @@ public class HamsterHomeActivity extends AppCompatActivity implements HamsterAda
 
 
         hamsterViewModel.getHamstersOfUser(userId).observe(this, adapter::submitList);
+    }
+
+    @Override
+    public void startHamsterDetails(Hamster hamster) {
+        startActivity(HamsterDetailActivity.hamsterDetailActivityIntentFactory(
+                getApplicationContext(),
+                userId, username, hamster.getHamsterId()
+        ));
     }
 
     public static Intent hamsterHomeIntentFactory(Context context, int userId, String username){
