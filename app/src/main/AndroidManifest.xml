@@ -41,6 +41,7 @@
         <activity android:name=".AdminActivity"/>
         <activity android:name=".ManageUsersActivity" />
 
+        <activity android:name=".ManageHamsterActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
