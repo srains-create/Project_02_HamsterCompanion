@@ -10,18 +10,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-
 
 import com.example.project_02_hamstercompanion.database.HamsterRepository;
 import com.example.project_02_hamstercompanion.database.entities.CareLog;
 import com.example.project_02_hamstercompanion.database.entities.Hamster;
 
-
 public class HamsterDetailActivity extends AppCompatActivity {
 
-    public static final String EXTRA_HAMSTER_ID =
-            "HAMSTER_ID";
+    public static final String EXTRA_HAMSTER_ID = "HAMSTER_ID";
 
     private TextView textHamsterName;
     private TextView textHungerValue;
@@ -32,6 +28,7 @@ public class HamsterDetailActivity extends AppCompatActivity {
     private Button buttonClean;
     private Button buttonPlay;
     private Button buttonRest;
+    private Button buttonBack;
 
     private HamsterRepository repository;
     private Hamster currentHamster;
@@ -39,19 +36,16 @@ public class HamsterDetailActivity extends AppCompatActivity {
     private String username;
 
 
-//    public static Intent intentFactory(Context context, int hamsterId) {
-//        Intent intent = new Intent(context, HamsterDetailActivity.class);
-//        intent.putExtra(EXTRA_HAMSTER_ID, hamsterId);
-//        return intent;
-//    }
-    //commented out by sylvia, new intent factory needed (see below)
-    //TODO: fix the unit tests that used old intentFactory
-
-    public static Intent hamsterDetailActivityIntentFactory(Context context, int userId, String username, int hamsterId){
+    public static Intent hamsterDetailActivityIntentFactory(
+            Context context,
+            int userId,
+            String username,
+            int hamsterId
+    ) {
         Intent intent = new Intent(context, HamsterDetailActivity.class);
         intent.putExtra("USER_ID", userId);
         intent.putExtra("USERNAME", username);
-        intent.putExtra("HAMSTER_ID", hamsterId);
+        intent.putExtra(EXTRA_HAMSTER_ID, hamsterId);
         return intent;
     }
 
@@ -64,7 +58,11 @@ public class HamsterDetailActivity extends AppCompatActivity {
 
         repository = HamsterRepository.getRepository(getApplication());
 
+        // read the extras
+        userId = getIntent().getIntExtra("USER_ID", -1);
+        username = getIntent().getStringExtra("USERNAME");
         int hamsterId = getIntent().getIntExtra(EXTRA_HAMSTER_ID, -1);
+
         if (hamsterId == -1) {
             // close the screen if no valid hamster ID
             finish();
@@ -85,6 +83,7 @@ public class HamsterDetailActivity extends AppCompatActivity {
         buttonClean = findViewById(R.id.buttonClean);
         buttonPlay = findViewById(R.id.buttonPlay);
         buttonRest = findViewById(R.id.buttonRest);
+        buttonBack = findViewById(R.id.buttonBack);
     }
 
     private void setupButtonListeners() {
@@ -115,21 +114,27 @@ public class HamsterDetailActivity extends AppCompatActivity {
                 handleRest();
             }
         });
+
+        // Back button
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void loadHamster(int hamsterId) {
         LiveData<Hamster> hamsterLiveData = repository.getHamsterById(hamsterId);
         hamsterLiveData.observe(this, h -> {
-                if (h != null) {
-                    this.currentHamster = h;
-                    updateUiFromHamster();
-                }
+            if (h != null) {
+                this.currentHamster = h;
+                updateUiFromHamster();
             }
-        );
+        });
     }
 
     private void updateUiFromHamster() {
-
         if (currentHamster == null) {
             return;
         }
@@ -139,7 +144,6 @@ public class HamsterDetailActivity extends AppCompatActivity {
         textCleanlinessValue.setText(String.valueOf(currentHamster.getCleanliness()));
         textEnergyValue.setText(String.valueOf(currentHamster.getEnergy()));
     }
-
 
     private void handleFeed() {
         // reduce hunger by 10, minimum 0.
@@ -230,6 +234,8 @@ public class HamsterDetailActivity extends AppCompatActivity {
         if (energy > 100) energy = 100;
         currentHamster.setEnergy(energy);
 
+        repository.updateHamster(currentHamster);
+
         CareLog log = new CareLog(
                 currentHamster.getHamsterId(),
                 "rest",
@@ -240,8 +246,4 @@ public class HamsterDetailActivity extends AppCompatActivity {
 
         updateUiFromHamster();
     }
-
-
-
-
 }

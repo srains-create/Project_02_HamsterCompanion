@@ -20,7 +20,7 @@ public class HamsterEntityTests {
 
         );
         // makes sure each getter returns the value passed in
-        assertEquals(1, h.getUserId());
+        assertEquals(Integer.valueOf(1), h.getUserId());
         assertEquals("Fluffy", h.getName());
         assertEquals(10, h.getHunger());
         assertEquals(20, h.getCleanliness());

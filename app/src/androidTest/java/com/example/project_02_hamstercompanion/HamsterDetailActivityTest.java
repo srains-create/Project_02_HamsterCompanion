@@ -32,7 +32,16 @@ public class HamsterDetailActivityTest {
     @Test
     public void intentFactory_putsCorrectHamsterId() {
         int expectedId = 42;
-        Intent intent = HamsterDetailActivity.intentFactory(context, expectedId);
+        int userId = 1;
+        String username = "tester";
+
+        Intent intent = HamsterDetailActivity.hamsterDetailActivityIntentFactory(
+                context,
+                userId,
+                username,
+                expectedId
+        );
+
         int actualId = intent.getIntExtra(HamsterDetailActivity.EXTRA_HAMSTER_ID, -1);
         assertEquals(expectedId, actualId);
     }
@@ -40,7 +49,15 @@ public class HamsterDetailActivityTest {
     @Test
     public void intentFactory_usesHamsterDetailActivityComponent() {
         int hamsterId = 7;
-        Intent intent = HamsterDetailActivity.intentFactory(context, hamsterId);
+        int userId = 2;
+        String username = "anotherTester";
+
+        Intent intent = HamsterDetailActivity.hamsterDetailActivityIntentFactory(
+                context,
+                userId,
+                username,
+                hamsterId
+        );
 
         assertNotNull(intent.getComponent());
         assertEquals(
