@@ -2,11 +2,9 @@ package com.example.project_02_hamstercompanion.database.entities;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-public class CareLogEntityTest {
+public class CareLogEntityTests {
 
     @Test
     public void careLog_hasCorrectFields(){
