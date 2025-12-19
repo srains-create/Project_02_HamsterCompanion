@@ -38,9 +38,10 @@ public class HamsterDetailActivityTest {
                 context, 1, "testuser", hamsterId);
         int actualHamsterId = intent.getIntExtra(HamsterDetailActivity.EXTRA_HAMSTER_ID, -1);
         int actualUserId = intent.getIntExtra("USER_ID", -1);
-        int actualUsername = intent.getStringExtra("USERNAME", -1);
-        assertEquals(actualUserId, actualHamsterId);
-        assertEquals(actualUsername, actualHamsterId);
+        String actualUsername = intent.getStringExtra("USERNAME");
+        assertEquals(hamsterId, actualHamsterId);
+        assertEquals(username, actualUsername);
+        assertEquals(userId, actualUserId);
     }
 
     @Test
