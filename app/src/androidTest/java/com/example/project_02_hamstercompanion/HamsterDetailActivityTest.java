@@ -47,7 +47,10 @@ public class HamsterDetailActivityTest {
     @Test
     public void intentFactory_usesHamsterDetailActivityComponent() {
         int hamsterId = 7;
-        Intent intent = HamsterDetailActivity.hamsterDetailActivityIntentFactory(context, hamsterId);
+        int userId = 1;
+        String username = "username";
+        Intent intent = HamsterDetailActivity.hamsterDetailActivityIntentFactory(
+                context, userId, username, hamsterId);
 
         assertNotNull(intent.getComponent());
         assertEquals(
